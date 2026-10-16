@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+/* Brand tokens, taken from the RK logo: night green, gold and ivory */
+@theme {
+  --color-ink: #06140f;
+  --color-ink-soft: #0e231b;
+  --color-night: #0b2a20;
+  --color-night-soft: #113528;
+  --color-ivory: #f5f1e8;
+  --color-paper: #fbf9f4;
+  --color-stone: #d9d3c5;
+  --color-muted: #55605a;
+  --color-muted-light: #a9aca2;
+  --color-forest: #1f4d3a;
+  --color-forest-deep: #143326;
+  --color-forest-light: #8fb8a2;
+  --color-gold: #b8913f;
+  --color-gold-light: #e6c77e;
+  --color-gold-deep: #8a6a27;
+
+  --font-serif: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-cinzel), var(--font-newsreader), Georgia, serif;
+  --font-script: var(--font-allura), cursive;
+
+  --tracking-eyebrow: 0.22em;
+
+  --animate-rise: rise 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-unveil: unveil 1.4s cubic-bezier(0.77, 0, 0.18, 1) both;
+  --animate-scroll-cue: scroll-cue 2.4s ease-in-out infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-toast: toast 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes unveil {
+    from { clip-path: inset(100% 0 0 0); }
+    to { clip-path: inset(0 0 0 0); }
+  }
+  @keyframes scroll-cue {
+    0%, 100% { transform: scaleY(0.3); transform-origin: top; opacity: 0.4; }
+    50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes toast {
+    from { opacity: 0; transform: translateY(16px) scale(0.96); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    @apply bg-gold text-ink;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-gold-light;
+  }
+}
+
+/* ---------- Magic layer ---------- */
+
+.text-gold-shimmer {
+  background: linear-gradient(100deg, #b8913f 20%, #f6e2a8 40%, #e6c77e 50%, #b8913f 70%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 7s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%, 100% { background-position: 100% 0; }
+  50% { background-position: 0 0; }
+}
+
+/* Slow-moving aurora glow for dark sections */
+.aurora { isolation: isolate; }
+.aurora::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  z-index: -1;
+  background:
+    radial-gradient(40% 35% at 20% 30%, rgb(31 77 58 / 0.55), transparent 70%),
+    radial-gradient(35% 30% at 80% 20%, rgb(184 145 63 / 0.18), transparent 70%),
+    radial-gradient(45% 40% at 60% 85%, rgb(20 51 38 / 0.7), transparent 70%);
+  animation: aurora 22s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes aurora {
+  from { transform: translate3d(-3%, -2%, 0) rotate(0deg); }
+  to { transform: translate3d(3%, 2%, 0) rotate(6deg); }
+}
+
+/* CSS-only star field */
+/* .starfield and .aurora need a positioned element: add `relative`, `fixed` or `absolute` */
+.starfield { isolation: isolate; }
+.starfield::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgb(246 226 168 / 0.9), transparent),
+    radial-gradient(1px 1px at 28% 72%, rgb(255 255 255 / 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 47% 33%, rgb(246 226 168 / 0.8), transparent),
+    radial-gradient(1px 1px at 63% 12%, rgb(255 255 255 / 0.5), transparent),
+    radial-gradient(1px 1px at 78% 58%, rgb(246 226 168 / 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 88% 28%, rgb(255 255 255 / 0.6), transparent),
+    radial-gradient(1px 1px at 8% 88%, rgb(246 226 168 / 0.6), transparent),
+    radial-gradient(1px 1px at 55% 92%, rgb(255 255 255 / 0.4), transparent);
+  background-size: 520px 520px;
+  animation: twinkle 6s ease-in-out infinite alternate;
+}
+@keyframes twinkle {
+  from { opacity: 0.45; }
+  to { opacity: 1; }
+}
+
+/* Gold hairline echoing the logo swoosh */
+.gold-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold-light), transparent);
+}
+
+/* Shine sweep for primary buttons */
+.btn-sweep { position: relative; overflow: hidden; isolation: isolate; }
+.btn-sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.28) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-sweep:hover::after { transform: translateX(120%); }
+
+/* SVG paths that draw in when revealed */
+.js [data-reveal] .draw-path,
+.js .draw-path[data-reveal] {
+  stroke-dasharray: var(--path-length, 1200);
+  stroke-dashoffset: var(--path-length, 1200);
+  transition: stroke-dashoffset 2.4s cubic-bezier(0.65, 0, 0.35, 1) 0.2s;
+}
+.js [data-reveal][data-visible="true"] .draw-path,
+.js .draw-path[data-reveal][data-visible="true"] { stroke-dashoffset: 0; }
+
+/* Compass needle sways gently while waiting for answers */
+@keyframes needle-idle {
+  0%, 100% { transform: rotate(-14deg); }
+  50% { transform: rotate(14deg); }
+}
+
+/* Summit flag rises once its section is revealed */
+.js [data-reveal] .flag-rise {
+  transform: translateY(44px);
+  opacity: 0;
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) 1.4s, opacity 0.6s 1.4s;
+}
+.js [data-reveal][data-visible="true"] .flag-rise { transform: none; opacity: 1; }
+
+/* Quest level nodes light up when their stage scrolls into view */
+.quest-node { transition: background-color 0.8s, box-shadow 0.8s, color 0.8s; }
+.js [data-reveal][data-visible="true"] .quest-node,
+html:not(.js) .quest-node {
+  background-color: var(--color-gold-light);
+  color: var(--color-ink);
+  box-shadow: 0 0 0 6px rgb(230 199 126 / 0.15), 0 0 32px rgb(230 199 126 / 0.55);
+}
+
+/* 3D book on hover */
+.book-3d { perspective: 1400px; }
+.book-3d > * { transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1); transform-style: preserve-3d; }
+.book-3d:hover > * { transform: rotateY(-14deg) rotateX(3deg) translateY(-6px); }
+
+/* Scroll reveal: elements start hidden only when JS has marked the document ready */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js [data-reveal][data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js [data-reveal] { opacity: 1; transform: none; }
+  .js [data-reveal] .draw-path, .js .draw-path[data-reveal] { stroke-dashoffset: 0; }
+  .book-3d:hover > * { transform: none; }
+}

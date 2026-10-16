@@ -1,0 +1,29 @@
+import Hero from "@/components/sections/Hero"
+import AtAGlance from "@/components/sections/AtAGlance"
+import PathFinder from "@/components/sections/PathFinder"
+import AboutPreview from "@/components/sections/AboutPreview"
+import PhilosophyStatement from "@/components/sections/PhilosophyStatement"
+import LeadershipPillars from "@/components/sections/LeadershipPillars"
+import SummitSection from "@/components/sections/SummitSection"
+import BooksSection from "@/components/sections/BooksSection"
+import SpeakerThemes from "@/components/sections/SpeakerThemes"
+import MottoManifesto from "@/components/sections/MottoManifesto"
+import CTASection from "@/components/sections/CTASection"
+
+export default function HomePage() {
+  return (
+    <>
+      <Hero />
+      <AtAGlance />
+      <PathFinder />
+      <AboutPreview />
+      <PhilosophyStatement />
+      <LeadershipPillars />
+      <SummitSection />
+      <BooksSection />
+      <SpeakerThemes />
+      <MottoManifesto />
+      <CTASection />
+    </>
+  )
+}

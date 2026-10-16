@@ -1,0 +1,50 @@
+import PageHero from "@/components/sections/PageHero"
+import SummitSection from "@/components/sections/SummitSection"
+import SummitPurpose from "@/components/sections/SummitPurpose"
+import SummitRegistration from "@/components/features/summit/SummitRegistration"
+import ButtonLink from "@/components/ui/ButtonLink"
+import CTASection from "@/components/sections/CTASection"
+import { pageMetadata } from "@/lib/seo"
+
+export const metadata = pageMetadata({
+  title: "Tamale Youth Summit",
+  description:
+    "The Tamale Youth Summit, founded and convened by Robert Kampi Laari, inspires, equips and connects young people with the knowledge, networks and opportunities to become effective leaders and change-makers.",
+  path: "/tamale-youth-summit",
+})
+
+export default function TamaleYouthSummitPage() {
+  return (
+    <>
+      <PageHero
+        eyebrow="Founded and convened by Robert Kampi Laari"
+        title={
+          <>
+            Tamale Youth <em className="text-gold-shimmer">Summit</em>
+          </>
+        }
+        intro={
+          <p className="text-sm font-semibold uppercase tracking-eyebrow text-forest-light">
+            Inspiring &middot; Equipping &middot; Connecting
+          </p>
+        }
+        aside={<ButtonLink href="#pass" label="Get your delegate pass" />}
+      />
+      <SummitPurpose />
+      <SummitSection
+        showLink={false}
+        title={
+          <>
+            What young people <span className="italic text-forest">gain.</span>
+          </>
+        }
+      />
+      <SummitRegistration />
+      <CTASection
+        eyebrow="Partner with the Summit"
+        title="Help connect young people to opportunity."
+        body="Organisations interested in supporting or partnering with the Tamale Youth Summit are invited to get in touch."
+      />
+    </>
+  )
+}
