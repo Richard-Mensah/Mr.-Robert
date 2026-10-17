@@ -1,182 +1,274 @@
-# Robert Kampi Laari: personal brand website
+# Robert Kampi Laari
 
-The official website of **Robert Kampi Laari**: Youth Development Advocate, Public Sector Leader, Author,
-Motivational Speaker and Founder of the Tamale Youth Summit.
+The official website of Robert Kampi Laari: youth development advocate, Regional Director of the National Youth
+Authority in Ghana's North East Region, author, speaker, and the founder of the Tamale Youth Summit.
 
-Built with **Next.js 15 (App Router) · TypeScript · Tailwind CSS v4 · Neon Postgres**.
+![The homepage: a night-green hero with Robert's portrait and the line "Empowering young people to lead, build and transform."](docs/screenshots/home-hero.jpg)
 
-Designed and developed by **Richard Mensah**.
+Robert's motto is "See you at the top", and the site takes it literally. Visitors climb through his story,
+earn milestones as they explore, collect real photographs from his work, and can test what they've learned in a
+small photo game. Underneath that, it's a fast, accessible Next.js site that does three practical jobs: it tells
+his story, it gets him invited to speak, and it collects interest in the Summit and his books.
+
+Built with Next.js 15 (App Router), TypeScript, Tailwind CSS v4 and Neon Postgres. Designed and developed by
+Richard Mensah.
+
+<p>
+  <img src="public/images/tamale-youth-summit-2025/tamale-youth-summit-2025-01.jpg" width="32%" alt="Robert addressing a full hall at the Tamale Youth Summit 2025" />
+  <img src="public/images/national-youth-month-2026/national-youth-month-2026-08.jpg" width="32%" alt="Robert and young volunteers behind the 2026 National Youth Month banner" />
+  <img src="public/images/dream-big-campus-tour/dream-big-campus-tour-02.jpg" width="32%" alt="Robert presenting a copy of If I Knew Then to a student" />
+</p>
 
 ---
 
 ## Contents
 
-1. [Quick start](#1-quick-start)
-2. [Environment variables](#2-environment-variables)
-3. [Set up Neon (the database)](#3-set-up-neon-the-database)
-4. [What's on the site](#4-whats-on-the-site)
-5. [The admin inbox](#5-the-admin-inbox)
-6. [Managing content](#6-managing-content)
-7. [Publishing Insights (articles)](#7-publishing-insights-articles)
-8. [Brand assets, logo and favicon](#8-brand-assets-logo-and-favicon)
-9. [Deploying to Vercel](#9-deploying-to-vercel)
-10. [Google Search Console](#10-google-search-console)
-11. [Project structure](#11-project-structure)
-12. [Content rules](#12-content-rules)
-13. [Troubleshooting](#13-troubleshooting)
+- [What's on the site](#whats-on-the-site)
+- [Real photography, and where it lives](#real-photography-and-where-it-lives)
+- [The game layer](#the-game-layer)
+- [Running it locally](#running-it-locally)
+- [Environment variables](#environment-variables)
+- [The database (Neon)](#the-database-neon)
+- [The admin inbox](#the-admin-inbox)
+- [Editing content](#editing-content)
+- [Publishing Insights](#publishing-insights)
+- [Brand assets](#brand-assets)
+- [Deploying to Vercel](#deploying-to-vercel)
+- [Google Search Console](#google-search-console)
+- [Security notes](#security-notes)
+- [Project structure](#project-structure)
+- [Content rules](#content-rules)
+- [Troubleshooting](#troubleshooting)
+- [Credits](#credits)
 
 ---
 
-## 1. Quick start
+## What's on the site
 
-You need **Node.js 20 or newer** ([nodejs.org](https://nodejs.org)).
+| Page | What you'll find there |
+|---|---|
+| Home `/` | The hero, a "choose your path" switcher (young person, organisation, event organiser, media), Robert's story in brief, the Summit, a strip of field photos and the books |
+| About `/about` | His biography told in five scroll-driven chapters, plus the motto manifesto |
+| Leadership `/leadership` | His public role at the National Youth Authority, a focus-area explorer and a partnership diagram |
+| Youth Development `/youth-development` | A five-level growth framework and the Leadership Compass, a one-minute reflection that suggests where you are on it |
+| Author `/author` | *If I Knew Then* and *Beyond Handshakes* as 3D books you can flip over, with a "tell me when it's out" sign-up |
+| Speaker `/speaker` | Speaking themes, and an event planner that drafts an invitation brief and pre-fills the booking form |
+| Speaker one-sheet `/speaker/one-sheet` | A printable page for organisers and press (Print, then Save as PDF) |
+| Tamale Youth Summit `/tamale-youth-summit` | What the Summit is for, and a delegate pass that personalises itself as you type |
+| Gallery `/gallery` | Fifteen impact stories, all 81 photographs, and the *Which moment?* game |
+| Insights `/insights` | Articles with search and category filters |
+| Contact `/contact` | A three-step contact wizard |
+
+Every page also has a command palette (`Ctrl+K` or `⌘K`) for jumping straight to any page or action.
+
+<p>
+  <img src="docs/screenshots/author-books.jpg" width="49%" alt="The Author page with both books" />
+  <img src="docs/screenshots/delegate-pass.jpg" width="49%" alt="The Tamale Youth Summit delegate pass" />
+</p>
+
+---
+
+## Real photography, and where it lives
+
+There are no stock images or AI illustrations anywhere on this site. Every picture is a real photograph from
+Robert's work: summits, school visits, clean-up days, apprenticeship ceremonies, campus tours. There are 81 of
+them, grouped into 17 folders by event.
+
+```
+public/images/
+  tamale-youth-summit-2026/    10 photos
+  national-youth-month-2026/   11
+  dream-big-campus-tour/        8
+  uds-address/                  8
+  talks-and-engagements/        8
+  north-east-youth-summit-2026/ 6
+  national-apprenticeship/      5
+  red-stop-walk/                5
+  ...and 9 smaller folders, plus books/ and portrait/
+```
+
+Two files control where photos appear:
+
+- **`data/gallery.ts`** lists every photo (its size, alt text and photographer credit) and the 17 stories they
+  belong to. The gallery and the impact stories are built from it.
+- **`data/images.ts`** decides which photo goes on which page.
+
+That second file has one firm rule: **a photo appears on one page only.** The gallery is the exception, because
+it's the archive of everything. Each page gets its own set of three or four, so moving around the site never
+feels repetitive. If someone accidentally reuses a photo, the site throws an error in development that names
+the duplicate, so it can't slip through to production.
+
+![Impact stories on the Gallery page](docs/screenshots/impact-stories.jpg)
+
+### Adding a photo
+
+1. Put the file in the right event folder, e.g. `public/images/red-stop-walk/red-stop-walk-06.jpg`.
+2. Add a row to `PHOTOS` in `data/gallery.ts` with its `id`, `story`, `width`, `height` and a plain description as
+   `alt` (who, what, where). If a photographer's watermark is visible, add `credit`.
+3. To feature it on a page, add its id to that page in `data/images.ts`.
+
+For a brand-new event, add a story to `STORIES` as well. Keep the summary to what the photos and banners
+actually show. Each story has an optional `figures` field for things like attendance. It stays hidden until you
+fill it in, and you should only fill it in when someone has confirmed the number.
+
+Next.js serves AVIF and WebP versions automatically, so there's no need to compress photos by hand. Files up
+to about 1–2 MB are fine.
+
+> **Still to come:** a flat cover image for *If I Knew Then*. For now the site uses the photo of Robert holding
+> the book up at the IAAS Seminar. When the real cover arrives, set it as `cover` in `data/books.ts`.
+
+---
+
+## The game layer
+
+Gamification here is gentle. Nothing blocks the content, nobody has to sign up, and all progress is stored in
+the visitor's own browser.
+
+**The climb.** A thin altitude meter on the right shows how far down the page you are, from Base to Summit.
+Visiting sections and finishing activities unlocks eleven milestones. A small toast celebrates each one, and
+the Journey panel in the header lists the rest:
+
+| Milestone | How to earn it |
+|---|---|
+| Pathfinder | Visit About |
+| Steward | Visit Leadership |
+| Catalyst | Visit Youth Development |
+| Reader | Visit Author |
+| Listener | Visit Speaker |
+| Convener | Visit the Tamale Youth Summit |
+| Witness | Visit the Gallery |
+| Connector | Visit Contact |
+| Navigator | Finish the Leadership Compass |
+| Storykeeper | Score 4 or 5 out of 5 in *Which moment?* |
+| Curator | Collect at least one photo from every impact story |
+
+**Collecting moments.** Most pages have a "Moments from the field" mosaic. Open a photo and it's collected: the
+tag turns gold, a row of diamonds fills in, and once you've opened every photo on that page it reads "All
+moments collected". The same collection counts in the gallery, which tracks progress across all 81 photos.
+
+![A Moments from the field mosaic on the Speaker page](docs/screenshots/speaker-moments.jpg)
+
+**Which moment?** At the bottom of the gallery, five real photos come up one at a time and you pick which
+event each is from. It keeps score and streaks. It's harder than it sounds, because two years of Tamale Youth
+Summit photos look very alike.
+
+![The moments grid with filters and the collection counter](docs/screenshots/moments-gallery.jpg)
+
+Everything respects the operating system's reduced-motion setting, works with a keyboard, and has proper alt text.
+
+---
+
+## Running it locally
+
+You'll need **Node.js 22.18 or newer**. Node 24 is what Vercel uses, so that's the safest choice. The database
+scripts run TypeScript files directly, which older versions of Node can't do.
 
 ```bash
-npm install            # install dependencies
-cp .env.example .env.local   # then fill in the values (section 2)
-npm run db:migrate     # create the database tables in Neon (section 3)
-npm run db:check       # confirm the connection and tables
-npm run dev            # start the site at http://localhost:3000
+npm install                  # install dependencies
+cp .env.example .env.local   # then fill in the values (see below)
+npm run db:migrate           # create the tables in Neon
+npm run db:check             # confirm the connection and see each table
+npm run dev                  # http://localhost:3000
 ```
 
 | Command | What it does |
 |---|---|
-| `npm run dev` | Development server with hot reload on http://localhost:3000 |
-| `npm run build` | Production build (also type-checks and lints) |
-| `npm start` | Run the production build |
-| `npm run lint` | ESLint |
-| `npm run typecheck` | TypeScript check only |
-| `npm run db:migrate` | Apply `db/schema.sql` to the Neon database in `DATABASE_URL` |
-| `npm run db:check` | Test the Neon connection and list each table with its row count |
-| `npm run brand:assets` | Regenerate favicon, icons and social images from `logo.png` |
+| `npm run dev` | Development server with hot reload |
+| `npm run build` | Production build. It also type-checks and lints, so run it before you push |
+| `npm start` | Serve the production build |
+| `npm run lint` / `npm run typecheck` | Lint or type-check on their own |
+| `npm run db:migrate` | Apply `db/schema.sql` to the database in `DATABASE_URL` |
+| `npm run db:check` | Test the Neon connection and print each table with its row count |
+| `npm run brand:assets` | Regenerate the favicon, icons and social images from `logo.png` |
 
-> The site works **without** a database: forms politely say they are "not available yet" and Insights
-> shows "coming soon". Add `DATABASE_URL` whenever you're ready.
-
----
-
-## 2. Environment variables
-
-Local values live in **`.env.local`** (copy it from `.env.example`; it is git-ignored so secrets never get committed).
-**`.env.example`** documents every variable and is safe to commit.
-
-| Variable | Required | Example | Purpose |
-|---|---|---|---|
-| `DATABASE_URL` | For forms and Insights | `postgresql://user:pass@ep-xxx-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require` | Neon Postgres connection (use the **pooled** string) |
-| `ADMIN_USERNAME` | For `/admin` | `robert` | Admin inbox login |
-| `ADMIN_PASSWORD` | For `/admin` | a long passphrase (12+ characters) | Admin inbox password |
-| `NEXT_PUBLIC_SITE_URL` | Yes in production | `https://robertkampilaari.com` | Canonical URLs, sitemap, social previews |
-| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Optional | `abc123…` | Google Search Console HTML-tag verification |
-
-Environment values are validated at startup (`lib/env.ts`). A malformed value is logged and ignored rather
-than crashing the site. **Restart `npm run dev` after editing `.env.local`.**
+The site runs fine with no database at all. The forms reply "not available yet" and Insights shows "coming
+soon", so you can work on the design without setting anything up.
 
 ---
 
-## 3. Set up Neon (the database)
+## Environment variables
 
-1. Create a free account at [neon.tech](https://neon.tech) and click **New Project**.
-   Choose the region closest to your visitors (for Ghana, a European region such as Frankfurt works well).
-2. Open **Dashboard → Connection Details**, select **Pooled connection**, and copy the connection string.
-3. Paste it into `.env.local`:
-   ```
-   DATABASE_URL="postgresql://…-pooler…neon.tech/neondb?sslmode=require"
-   ```
-4. Create the tables:
-   ```bash
-   npm run db:migrate
-   ```
-   This runs `db/schema.sql`. It is safe to run again: every statement uses `if not exists`.
-5. Restart `npm run dev`. The forms now save to Neon.
+Local values go in `.env.local`. Git ignores this file, so secrets never get committed. `.env.example`
+documents every variable and is safe to commit.
 
-### Tables
-
-| Table | Filled by | Contains |
+| Variable | Needed for | Example |
 |---|---|---|
-| `inquiries` | Contact wizard, speaking invitation form | Speaking, partnership, media and general enquiries |
-| `subscribers` | Book "Notify me", Insights subscribe, Summit delegate pass | Opt-in emails per interest (`insights`, `books`, `summit`) |
-| `compass_results` | Leadership Compass | **Anonymous** result level only, with no personal data |
-| `insights` | You (see section 7) | Articles for the Insights page |
+| `DATABASE_URL` | Forms, admin, Insights | `postgresql://user:pass@ep-xxx-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require` |
+| `ADMIN_USERNAME` | `/admin` | `robert` |
+| `ADMIN_PASSWORD` | `/admin` | A long passphrase, at least 12 characters |
+| `NEXT_PUBLIC_SITE_URL` | Production | `https://robertkampilaari.com` (no trailing slash) |
+| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Optional | The `content` value from Google's HTML-tag method |
 
-You can browse and edit tables in Neon's **Tables** view or run SQL in its **SQL Editor**.
+`lib/env.ts` checks these values at startup. If one is malformed, the site logs a warning and treats it as
+unset rather than crashing. Restart `npm run dev` after any change to `.env.local`, because Next.js only reads
+the file at startup.
 
 ---
 
-## 4. What's on the site
+## The database (Neon)
 
-| Page | Signature experience |
+1. Create a free project at [neon.tech](https://neon.tech). For visitors in Ghana, a European region such as
+   Frankfurt is the closest option.
+2. Go to **Connection Details**, choose **Pooled connection**, and copy the string. It should end with
+   `?sslmode=require`.
+3. Paste it into `.env.local` as `DATABASE_URL`.
+4. Run `npm run db:migrate`. It's safe to run more than once, because every statement uses `if not exists`.
+5. Run `npm run db:check`. You should see something like:
+
+   ```
+   Connected to "neondb" (PostgreSQL 17.5)
+     ✓ inquiries: 0 rows
+     ✓ insights: 0 rows
+     ✓ subscribers: 0 rows
+     ✓ compass_results: 0 rows
+   ```
+
+| Table | Filled by | Holds |
+|---|---|---|
+| `inquiries` | The contact wizard and the speaking form | Speaking, partnership, media and general enquiries |
+| `subscribers` | Book alerts, Insights sign-up, the Summit delegate pass | One row per email per interest (`insights`, `books`, `summit`) |
+| `compass_results` | The Leadership Compass | The resulting level only. No answers, no personal data |
+| `insights` | You (see [Publishing Insights](#publishing-insights)) | Articles |
+
+One limitation: the migration only creates tables that don't exist yet. It won't alter a table that's already
+there. If you change a column later, write that change as its own `alter table` statement and run it in Neon's
+SQL Editor.
+
+---
+
+## The admin inbox
+
+Go to `/admin` and sign in with `ADMIN_USERNAME` and `ADMIN_PASSWORD`. You'll see enquiry counts by type,
+subscribers by interest and Compass results by level. Below that are the latest 100 enquiries (click one to
+expand it; the email is a mailto link) and the subscriber list.
+
+If either variable is empty, `/admin` stays switched off. Search engines are told not to index it.
+
+---
+
+## Editing content
+
+All the wording lives in `data/`, separate from the design. Change the words there and the pages update.
+
+| File | What's in it |
 |---|---|
-| **Home** `/` | Night-sky hero, "Choose your path" switcher (young person / organisation / event organiser / media), quest-map sections |
-| **About** `/about` | Scroll-driven *five chapters* with a sticky progress rail, full biography, motto manifesto |
-| **Leadership** `/leadership` | Interactive *focus-area explorer* (six areas) and a *partnership orbit* diagram |
-| **Youth Development** `/youth-development` | Five-level *quest map* plus the **Leadership Compass**, a one-minute reflection that points to your level |
-| **Author** `/author` | 3D *flip-books* and a "notify me when available" opt-in |
-| **Speaker** `/speaker` | Themes, an **event planner** that builds a live invitation brief and pre-fills the booking form |
-| **Speaker one-sheet** `/speaker/one-sheet` | Printable page for organisers and media (Print → Save as PDF) |
-| **Tamale Youth Summit** `/tamale-youth-summit` | Live 3D **delegate pass** that personalises as you type, with register-interest |
-| **Insights** `/insights` | Article listing with search and category filters, article pages, subscribe |
-| **Contact** `/contact` | Three-step **contact wizard** (pathway → details → message and review) |
-
-**Site-wide features**
-- **⌘K / Ctrl+K command palette**: search any page or action from anywhere.
-- **"Climb to the Top" journey**: an altitude meter while scrolling, 8 milestone badges (7 pages plus completing
-  the Compass), a Journey panel in the header, and a summit moment in the footer. Progress is stored only in
-  the visitor's own browser.
-- Fully responsive, keyboard accessible, and respects *reduced motion* settings.
-
----
-
-## 5. The admin inbox
-
-Visit **`/admin`** (for example http://localhost:3000/admin) and sign in with `ADMIN_USERNAME` / `ADMIN_PASSWORD`.
-
-You'll see:
-- counts of enquiries by type, subscribers by interest, and Leadership Compass results by level
-- recent enquiries (click one to expand it; the email is a mailto link for quick replies)
-- the subscriber list
-
-If either admin variable is empty, `/admin` is disabled. It is excluded from search engines
-(`noindex` and `robots.txt`). **Use a strong, unique password in production.**
-
----
-
-## 6. Managing content
-
-All wording lives in `data/`, separate from the design:
-
-| File | Content |
-|---|---|
-| `data/profile.ts` | Biography, role, education, belief, vision, motto |
-| `data/chapters.ts` | The five About-page chapters |
-| `data/pillars.ts` | At-a-glance items, the six leadership areas, Summit focus, the five-level framework, manifesto lines |
-| `data/books.ts` | Books (add synopses, publishers and purchase links here when available) |
+| `data/profile.ts` | Biography, current role, education, belief, vision, motto |
+| `data/chapters.ts` | The five chapters on the About page |
+| `data/pillars.ts` | At-a-glance items, leadership areas, Summit focus, the five-level framework, manifesto lines |
+| `data/books.ts` | The books. Add synopses, publishers and buying links when they exist |
 | `data/speaking.ts` | Speaking themes and formats |
-| `data/compass.ts` | Leadership Compass questions and next-step advice |
-| `data/paths.ts` | "Choose your path" options |
-| `data/commands.ts` | Command palette entries |
-| `data/navigation.ts` | Menu and **social links** (replace `null` with real profile URLs) |
-| `data/images.ts` | Which photo fills each fixed page slot (hero, about, summit…) |
-| `data/gallery.ts` | Impact stories and every gallery photo (see below) |
-
-### Photos, the gallery and impact stories
-
-All photography lives in `public/images/<story>/` and is listed in `data/gallery.ts`:
-
-1. Drop the file into `public/images/<story>/` (for example `public/images/red-stop-walk/red-stop-walk-06.jpg`).
-2. Add a row to `PHOTOS` with its `id`, `story`, `width`, `height`, a descriptive `alt` and, if a photographer's
-   watermark is visible, a `credit`.
-3. For a new event, add a story to `STORIES`. Summaries describe only what the photos and banners show; add
-   `figures` (e.g. attendance) only once a source confirms them.
-
-The real cover for *If I Knew Then* is still to come: set its `cover` in `data/books.ts` when the file arrives.
-
-Next.js automatically serves optimised AVIF/WebP versions. Use authentic photographs only.
+| `data/compass.ts` | Compass questions and the advice for each level |
+| `data/gallery.ts` | Every photo and every impact story |
+| `data/images.ts` | Which photo goes where, plus the one-page-per-photo check |
+| `data/journey.ts` | The eleven milestones |
+| `data/paths.ts`, `data/commands.ts` | The path switcher and the command palette |
+| `data/navigation.ts` | The menu and social links (replace each `null` with a real profile URL) |
 
 ---
 
-## 7. Publishing Insights (articles)
+## Publishing Insights
 
-Insert a row in Neon's SQL Editor:
+There's no CMS yet. You add articles straight to Neon from its SQL Editor:
 
 ```sql
 insert into insights (slug, title, excerpt, body, category, featured, status, published_at)
@@ -191,98 +283,144 @@ values (
 Second paragraph…
 
 > A pull quote.',
-  'leadership',      -- leadership | youth-development | career | personal-growth | entrepreneurship | public-service | community-development
-  true,              -- show as the featured article
-  'published',       -- or 'draft' to hide it
+  'leadership',   -- leadership | youth-development | career | personal-growth | entrepreneurship | public-service | community-development
+  true,           -- show it as the featured article
+  'published',    -- or 'draft' to keep it hidden
   now()
 );
 ```
 
-Body formatting: blank lines separate paragraphs, `## ` starts a heading, `> ` starts a pull quote.
-For a cover image, add a file under `public/images/insights/` and set `cover_image = '/images/insights/file.jpg'`.
-Published articles appear on `/insights` and in the sitemap within about five minutes.
+In the body, a blank line starts a new paragraph, `## ` starts a heading and `> ` starts a pull quote. For a
+cover image, put the file in `public/images/insights/` and set `cover_image` to `'/images/insights/your-file.jpg'`.
+New articles show up on `/insights` and in the sitemap within about five minutes.
 
 ---
 
-## 8. Brand assets, logo and favicon
+## Brand assets
 
-`logo.png` (project root) is the single source for:
-- the favicon (`app/icon.png`) and Apple touch icon (`app/apple-icon.png`)
-- the header monogram (`public/brand/monogram.png`) and full logo (`public/brand/logo.png`)
-- social share images (`app/opengraph-image.jpg`, `app/twitter-image.jpg`)
+`logo.png` in the project root generates the favicon, the Apple touch icon, the header monogram and the social
+share images. After you replace it, run `npm run brand:assets`.
 
-After replacing `logo.png`, run `npm run brand:assets`.
+Colours and fonts are set once, in `app/globals.css`:
 
-Colours and fonts are defined once in `app/globals.css` (`@theme`): night green `#0b2a20`, gold `#e6c77e`,
-ivory `#f5f1e8`; Cinzel (labels), Newsreader (headings), Inter (text), Allura (the "See you at the top" signature).
-
----
-
-## 9. Deploying to Vercel
-
-1. Push the project to a GitHub repository (`.env.local` is ignored automatically).
-2. On [vercel.com](https://vercel.com), choose **Add New → Project** and import the repository.
-3. Under **Settings → Environment Variables**, add `DATABASE_URL`, `ADMIN_USERNAME`, `ADMIN_PASSWORD`,
-   `NEXT_PUBLIC_SITE_URL` (your real domain) and, if used, `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`.
-4. Deploy. Then add your custom domain under **Settings → Domains**.
-5. Make sure `npm run db:migrate` has been run against the production database.
-
-Tip: Neon's Vercel integration can create the database and set `DATABASE_URL` for you.
-
----
-
-## 10. Google Search Console
-
-1. Deploy the site with `NEXT_PUBLIC_SITE_URL` set to the live domain.
-2. In [Google Search Console](https://search.google.com/search-console), add the site and choose the
-   **HTML tag** method. Copy only the `content` value into `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` and redeploy.
-3. Under **Sitemaps**, submit `https://<your-domain>/sitemap.xml`.
-4. Use **URL Inspection → Request indexing** for the home page.
-
-The site already provides a sitemap, robots.txt, canonical URLs, Open Graph and X/Twitter cards, and
-structured data (Person, WebSite, Book, Article).
-
----
-
-## 11. Project structure
-
-```
-app/                      Routes (App Router)
-  api/inquiries|subscribe|compass/route.ts   API endpoints (validated with zod)
-  admin/page.tsx          Private inbox (protected by middleware.ts)
-  speaker/one-sheet/      Printable one-sheet
-components/
-  ui/                     Small reusable building blocks
-  layout/                 Header, footer, menu, summit moment
-  sections/               Page sections
-  features/               Interactive features (compass, planner, pass, palette, journey, forms…)
-data/                     All site wording and content
-hooks/                    React hooks (forms, journey, tilt, active section)
-lib/                      Server logic: env, db, queries, validation, SEO
-db/schema.sql             Database schema
-scripts/                  migrate.ts, brand-assets.ts
-middleware.ts             Basic Auth for /admin
-```
-
-Conventions follow `nextjs-llm-instructions.md`: TypeScript everywhere, Tailwind for styling,
-files under 200 lines, server components by default.
-
----
-
-## 12. Content rules
-
-Every factual statement about Robert comes from `PROFILE.txt`. Don't add awards, statistics, dates,
-partners, testimonials or titles unless a source document supports them. Editorial lines (for example the
-manifesto statements) are framing, not attributed quotations.
-
----
-
-## 13. Troubleshooting
-
-| Problem | Fix |
+| | |
 |---|---|
-| `npm` or `node` is "not recognised" | Node is installed at `C:\Program Files\nodejs` but not on PATH. Reinstall Node and tick "Add to PATH", or restart the terminal. |
-| Forms say "not available yet" | `DATABASE_URL` is empty or wrong. Check `.env.local`, run `npm run db:migrate`, and restart the dev server. |
-| `/admin` keeps asking for a password | Check `ADMIN_USERNAME` / `ADMIN_PASSWORD` in `.env.local` (password 12+ characters), then restart. |
-| Slow installs or file-lock errors | The project is inside OneDrive. Pause OneDrive syncing, or move the folder outside OneDrive. |
-| Changes to `.env.local` don't apply | Stop and restart `npm run dev`. |
+| Colours | Night green `#0b2a20`, gold `#e6c77e`, ivory `#f5f1e8` |
+| Fonts | Cinzel for labels, Newsreader for headings, Inter for body text, Allura for the "See you at the top" signature |
+
+---
+
+## Deploying to Vercel
+
+1. Go to [vercel.com/new](https://vercel.com/new) and **import this GitHub repository**. Import it, don't
+   upload a folder. That link is what makes every push go live.
+2. Before the first deploy, add the variables from [Environment variables](#environment-variables) under
+   **Environment Variables**. Set `NEXT_PUBLIC_SITE_URL` to the real domain.
+3. Deploy, then add the custom domain under **Settings → Domains**.
+4. Make sure `npm run db:migrate` has been run against the production database.
+
+From then on, pushing to `main` deploys automatically.
+
+**If you push and nothing changes on the live site,** open the project's **Deployments** tab and check that
+the newest entry shows your latest commit message. If it doesn't, the project isn't connected to this repo.
+This has happened before. The fix is **Settings → Git → Connect Git Repository**, or a fresh import as in
+step 1. If the deployment is there but shows *Error*, open it: the build log names the file and line that
+failed, and running `npm run build` locally will show you the same error.
+
+Neon's Vercel integration can create the database and set `DATABASE_URL` for you, if you'd rather not copy
+strings around.
+
+---
+
+## Google Search Console
+
+1. Deploy with `NEXT_PUBLIC_SITE_URL` set to the live domain.
+2. In [Search Console](https://search.google.com/search-console), add the site and choose the **HTML tag**
+   method. Copy only the `content` value into `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` and redeploy.
+3. Submit `https://<your-domain>/sitemap.xml` under **Sitemaps**.
+4. Use **URL Inspection → Request indexing** on the homepage.
+
+The site already provides a sitemap, robots.txt, canonical URLs, Open Graph and X cards, and structured data
+for Person, WebSite, Book and Article.
+
+---
+
+## Security notes
+
+The public forms write to the database, so the API routes are protected in a few ways:
+
+- Every database query passes values as parameters, so form input can never become SQL.
+- Every field is validated with zod, and length-limited, before it gets near the database.
+- The contact and sign-up forms have a hidden honeypot field. Bots that fill it get a polite "thank you" and
+  nothing is stored.
+- `lib/requestGuard.ts` rejects posts from other websites (403) and oversized requests (413). It also limits
+  each visitor to 5 enquiries, 8 sign-ups and 20 Compass results per 10 minutes (429).
+- `/admin` sits behind HTTP Basic Auth in `middleware.ts`, which compares passwords in constant time.
+
+The rate limit is kept in each server instance's memory. That's enough to stop casual flooding. If real spam
+ever shows up, the next step is to move the counter into Neon or Upstash so every instance shares it.
+
+---
+
+## Project structure
+
+```
+app/                        Pages and API routes (App Router)
+  api/inquiries|subscribe|compass/   Form endpoints
+  admin/                    Private inbox
+  gallery/                  Impact stories, all photos, Which moment?
+  speaker/one-sheet/        Printable one-sheet
+components/
+  ui/                       Small building blocks (buttons, image panel, tilt card…)
+  layout/                   Header, footer, mobile menu
+  sections/                 Page sections
+  features/                 Interactive pieces: gallery, journey, compass, planner, pass, forms…
+data/                       All wording, photos and milestones
+hooks/                      useJourney, useCollection, useTilt, form hooks
+lib/                        env, db, queries, validation, request guard, SEO
+db/schema.sql               Database schema
+docs/screenshots/           The images in this README
+public/images/              The 81 photographs, one folder per event
+scripts/                    migrate.ts, db-check.ts, brand-assets.ts
+middleware.ts               Basic Auth for /admin
+```
+
+Code conventions are in `nextjs-llm-instructions.md`: TypeScript throughout, Tailwind for styling, server
+components unless a component needs interaction, and files kept under 200 lines.
+
+---
+
+## Content rules
+
+Every fact about Robert on this site traces back to `PROFILE.txt` or to what a photograph visibly shows (event
+names and themes printed on banners, for example). Please don't add awards, statistics, dates, partners,
+testimonials or titles unless someone can point to a source. The manifesto lines are editorial framing, not
+quotes, and shouldn't be presented as things he said.
+
+---
+
+## Troubleshooting
+
+| What's happening | What to do |
+|---|---|
+| I pushed, but the live site didn't change | See [Deploying to Vercel](#deploying-to-vercel). Usually the Vercel project isn't linked to this repo |
+| Forms say "not available yet" | `DATABASE_URL` is empty or wrong. Check `.env.local`, run `npm run db:check`, then restart the dev server |
+| A form says "Too many submissions" | That's the rate limit. Wait ten minutes, or restart the dev server to reset it |
+| `/admin` keeps asking for a password | Check `ADMIN_USERNAME` and `ADMIN_PASSWORD` (12+ characters), then restart |
+| The dev server says a photo is used on more than one page | Remove the duplicate id from `data/images.ts`. The error names the file |
+| `npm run db:migrate` fails with a syntax error | Your Node is too old to run TypeScript files. Install Node 22.18+ or 24 |
+| `node` or `npm` "is not recognised" | Node isn't on your PATH. Reinstall it with "Add to PATH" ticked, then open a new terminal |
+| Slow installs or file-lock errors on Windows | The project sits inside OneDrive. Pause syncing, or move the folder out of OneDrive |
+| Changes to `.env.local` don't apply | Stop and restart `npm run dev` |
+
+---
+
+## Credits
+
+Tamale Youth Summit photography by **OnGod Studios** and **Elpis Photography**, credited on each photo where
+their watermark appears. Please confirm publishing rights with the photographers before reusing any image
+outside this site.
+
+Designed and developed by **Richard Mensah**.
+
+*See you at the top.*
