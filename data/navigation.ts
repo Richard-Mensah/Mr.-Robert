@@ -8,6 +8,7 @@ export const PRIMARY_NAV: NavItem[] = [
   { label: "Author", href: "/author" },
   { label: "Speaker", href: "/speaker" },
   { label: "Tamale Youth Summit", href: "/tamale-youth-summit" },
+  { label: "Gallery", href: "/gallery" },
   { label: "Insights", href: "/insights" },
 ]
 

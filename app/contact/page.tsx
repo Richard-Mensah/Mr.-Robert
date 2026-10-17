@@ -1,5 +1,6 @@
 import PageHero from "@/components/sections/PageHero"
 import ContactSection from "@/components/sections/ContactSection"
+import PageMoments from "@/components/features/gallery/PageMoments"
 import { pageMetadata } from "@/lib/seo"
 import type { InquiryKind } from "@/types"
 
@@ -32,6 +33,7 @@ export default async function ContactPage({ searchParams }: Props) {
         intro={<p>Choose the pathway that best fits your enquiry. Every message is read and reviewed.</p>}
       />
       <ContactSection defaultKind={defaultKind} />
+      <PageMoments page="contact" tone="ivory" />
     </>
   )
 }

@@ -19,7 +19,11 @@ export type Book = {
   title: string
   subtitle?: string
   description: string
+  /** Typographic fallback colour, used only when there is no cover image. */
   coverTone: "ink" | "forest" | "gold"
+  cover?: ImageAsset
+  /** Optional image for the back of the flip book. */
+  back?: ImageAsset
 }
 
 export type SpeakingTheme = {
@@ -27,13 +31,37 @@ export type SpeakingTheme = {
   description: string
 }
 
-export type IllustrationName = "ascent" | "author" | "leadership" | "speaking" | "summit" | "youth"
-
 export type ImageAsset = {
   src: string
   alt: string
-  ready: boolean
-  illustration: IllustrationName
+  /** CSS object-position, for photos whose subject is off-centre. */
+  position?: string
+}
+
+export type Photo = {
+  id: string
+  story: string
+  src: string
+  width: number
+  height: number
+  alt: string
+  credit?: string
+}
+
+export type StoryCategory = "summits" | "speaking" | "community" | "programmes" | "profile"
+
+export type Story = {
+  slug: string
+  title: string
+  category: StoryCategory
+  context: string
+  summary: string
+  /** Photo id used on the story card. */
+  cover: string
+  /** Shown on impact cards and in the quiz. Profile and book photos set this to false. */
+  impact: boolean
+  /** Verified figures only. Leave undefined until a source confirms them. */
+  figures?: { value: string; label: string }[]
 }
 
 export type Milestone = {

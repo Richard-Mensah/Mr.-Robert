@@ -1,4 +1,4 @@
-import { BookOpen, Compass, Navigation, Flame, Landmark, Mic, Mountain, Users, type LucideProps } from "lucide-react"
+import { BookOpen, Camera, Compass, Navigation, Flame, Images, Landmark, Mic, Mountain, ScrollText, Users, type LucideProps } from "lucide-react"
 
 const ICONS = {
   pathfinder: Compass,
@@ -9,6 +9,9 @@ const ICONS = {
   convener: Users,
   connector: Mountain,
   navigator: Navigation,
+  witness: Camera,
+  storykeeper: ScrollText,
+  curator: Images,
 }
 
 type Props = LucideProps & {

@@ -4,6 +4,8 @@ import SummitPurpose from "@/components/sections/SummitPurpose"
 import SummitRegistration from "@/components/features/summit/SummitRegistration"
 import ButtonLink from "@/components/ui/ButtonLink"
 import CTASection from "@/components/sections/CTASection"
+import PageMoments from "@/components/features/gallery/PageMoments"
+import { IMAGES } from "@/data/images"
 import { pageMetadata } from "@/lib/seo"
 
 export const metadata = pageMetadata({
@@ -32,6 +34,7 @@ export default function TamaleYouthSummitPage() {
       />
       <SummitPurpose />
       <SummitSection
+        image={IMAGES.summitPage}
         showLink={false}
         title={
           <>
@@ -39,6 +42,7 @@ export default function TamaleYouthSummitPage() {
           </>
         }
       />
+      <PageMoments page="tamale-youth-summit" />
       <SummitRegistration />
       <CTASection
         eyebrow="Partner with the Summit"

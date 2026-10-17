@@ -24,7 +24,14 @@ export function middleware(request: NextRequest) {
   const header = request.headers.get("authorization") ?? ""
   if (!header.startsWith("Basic ")) return unauthorized("Authentication required.")
 
-  const [user, ...rest] = atob(header.slice(6)).split(":")
+  let decoded: string
+  try {
+    decoded = atob(header.slice(6))
+  } catch {
+    return unauthorized("Authentication required.")
+  }
+
+  const [user, ...rest] = decoded.split(":")
   if (!safeEqual(user, username) || !safeEqual(rest.join(":"), password)) {
     return unauthorized("Invalid credentials.")
   }

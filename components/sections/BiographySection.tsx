@@ -19,7 +19,7 @@ export default function BiographySection() {
         <aside className="lg:col-span-4">
           <div className="lg:sticky lg:top-28">
             <div data-reveal className="relative aspect-[4/5]">
-              <ImagePanel image={IMAGES.about} className="h-full w-full" sizes="(min-width: 1024px) 30vw, 100vw" />
+              <ImagePanel image={IMAGES.biography} className="h-full w-full" sizes="(min-width: 1024px) 30vw, 100vw" />
             </div>
             <dl data-reveal className="mt-10 divide-y divide-ink/10 border-y border-ink/10">
               {FACTS.map((fact) => (

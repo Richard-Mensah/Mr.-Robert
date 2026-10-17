@@ -1,10 +1,14 @@
 import { NextRequest } from "next/server"
 import { inquirySchema } from "@/lib/validations"
 import { saveInquiry } from "@/lib/inquiries"
+import { guardRequest } from "@/lib/requestGuard"
 import { failure, invalid, ok, readJson } from "@/lib/apiResponse"
 
 // POST /api/inquiries
 export async function POST(request: NextRequest) {
+  const blocked = guardRequest(request, "inquiries", 5)
+  if (blocked) return blocked
+
   try {
     const parsed = inquirySchema.safeParse(await readJson(request))
     if (!parsed.success) return invalid(parsed.error)

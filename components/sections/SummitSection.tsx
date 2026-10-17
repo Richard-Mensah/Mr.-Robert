@@ -5,11 +5,13 @@ import ImagePanel from "@/components/ui/ImagePanel"
 import ButtonLink from "@/components/ui/ButtonLink"
 import { IMAGES } from "@/data/images"
 import { SUMMIT_FOCUS } from "@/data/pillars"
+import type { ImageAsset } from "@/types"
 import { revealDelay } from "@/lib/utils"
 
 type Props = {
   title?: ReactNode
   showLink?: boolean
+  image?: ImageAsset
 }
 
 const DEFAULT_TITLE = (
@@ -19,7 +21,7 @@ const DEFAULT_TITLE = (
   </>
 )
 
-export default function SummitSection({ title = DEFAULT_TITLE, showLink = true }: Props) {
+export default function SummitSection({ title = DEFAULT_TITLE, showLink = true, image = IMAGES.summitHome }: Props) {
   return (
     <section aria-labelledby="summit-title" data-checkpoint="Summit" className="relative bg-ivory py-24 lg:py-36">
       <Container size="wide" className="grid gap-16 lg:grid-cols-12 lg:gap-12">
@@ -48,7 +50,7 @@ export default function SummitSection({ title = DEFAULT_TITLE, showLink = true }
 
         <div className="lg:col-span-6">
           <div data-reveal className="relative aspect-[5/4] border border-gold/30 shadow-[0_30px_70px_-30px_rgba(6,20,15,0.6)]">
-            <ImagePanel image={IMAGES.summit} className="h-full w-full" />
+            <ImagePanel image={image} className="h-full w-full" />
           </div>
           <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3">
             {SUMMIT_FOCUS.map((item, index) => (

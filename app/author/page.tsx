@@ -4,6 +4,7 @@ import ReadingThemes from "@/components/sections/ReadingThemes"
 import CTASection from "@/components/sections/CTASection"
 import JsonLd from "@/components/ui/JsonLd"
 import { BOOKS } from "@/data/books"
+import PageMoments from "@/components/features/gallery/PageMoments"
 import { booksJsonLd, pageMetadata } from "@/lib/seo"
 
 export const metadata = pageMetadata({
@@ -32,6 +33,7 @@ export default function AuthorPage() {
         }
       />
       <BookShowcase />
+      <PageMoments page="author" tone="dark" />
       <ReadingThemes />
       <CTASection
         eyebrow="Book conversations"

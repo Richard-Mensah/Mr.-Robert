@@ -11,7 +11,7 @@ export default function AboutPreview() {
       <Container size="wide" className="grid gap-16 lg:grid-cols-12 lg:gap-12">
         <div className="lg:col-span-5">
           <div data-reveal className="relative aspect-[4/5] lg:sticky lg:top-28">
-            <ImagePanel image={IMAGES.about} className="h-full w-full" />
+            <ImagePanel image={IMAGES.aboutPreview} className="h-full w-full" />
           </div>
         </div>
         <div className="lg:col-span-6 lg:col-start-7">

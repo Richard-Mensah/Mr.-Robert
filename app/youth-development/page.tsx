@@ -4,6 +4,8 @@ import YouthFramework from "@/components/sections/YouthFramework"
 import SummitSection from "@/components/sections/SummitSection"
 import LeadershipCompass from "@/components/features/compass/LeadershipCompass"
 import CTASection from "@/components/sections/CTASection"
+import PageMoments from "@/components/features/gallery/PageMoments"
+import { IMAGES } from "@/data/images"
 import { pageMetadata } from "@/lib/seo"
 
 export const metadata = pageMetadata({
@@ -33,7 +35,8 @@ export default function YouthDevelopmentPage() {
       />
       <MissionSection />
       <YouthFramework />
-      <SummitSection />
+      <PageMoments page="youth-development" />
+      <SummitSection image={IMAGES.summitYouth} />
       <LeadershipCompass />
       <CTASection
         eyebrow="Get involved"

@@ -3,6 +3,7 @@ import Chapters from "@/components/sections/Chapters"
 import BiographySection from "@/components/sections/BiographySection"
 import MottoManifesto from "@/components/sections/MottoManifesto"
 import CTASection from "@/components/sections/CTASection"
+import PageMoments from "@/components/features/gallery/PageMoments"
 import { pageMetadata } from "@/lib/seo"
 
 export const metadata = pageMetadata({
@@ -25,6 +26,7 @@ export default function AboutPage() {
       />
       <Chapters />
       <BiographySection />
+      <PageMoments page="about" tone="ivory" />
       <MottoManifesto />
       <CTASection />
     </>

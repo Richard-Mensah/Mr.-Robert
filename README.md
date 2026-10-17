@@ -33,8 +33,9 @@ You need **Node.js 20 or newer** ([nodejs.org](https://nodejs.org)).
 
 ```bash
 npm install            # install dependencies
-# edit .env.local       # see section 2 (a template is already in place)
+cp .env.example .env.local   # then fill in the values (section 2)
 npm run db:migrate     # create the database tables in Neon (section 3)
+npm run db:check       # confirm the connection and tables
 npm run dev            # start the site at http://localhost:3000
 ```
 
@@ -46,6 +47,7 @@ npm run dev            # start the site at http://localhost:3000
 | `npm run lint` | ESLint |
 | `npm run typecheck` | TypeScript check only |
 | `npm run db:migrate` | Apply `db/schema.sql` to the Neon database in `DATABASE_URL` |
+| `npm run db:check` | Test the Neon connection and list each table with its row count |
 | `npm run brand:assets` | Regenerate favicon, icons and social images from `logo.png` |
 
 > The site works **without** a database: forms politely say they are "not available yet" and Insights
@@ -55,7 +57,7 @@ npm run dev            # start the site at http://localhost:3000
 
 ## 2. Environment variables
 
-Local values live in **`.env.local`** (already created, and git-ignored so secrets never get committed).
+Local values live in **`.env.local`** (copy it from `.env.example`; it is git-ignored so secrets never get committed).
 **`.env.example`** documents every variable and is safe to commit.
 
 | Variable | Required | Example | Purpose |
@@ -153,15 +155,20 @@ All wording lives in `data/`, separate from the design:
 | `data/paths.ts` | "Choose your path" options |
 | `data/commands.ts` | Command palette entries |
 | `data/navigation.ts` | Menu and **social links** (replace `null` with real profile URLs) |
-| `data/images.ts` | Photography slots (see below) |
+| `data/images.ts` | Which photo fills each fixed page slot (hero, about, summit…) |
+| `data/gallery.ts` | Impact stories and every gallery photo (see below) |
 
-### Replacing the cartoon illustrations with real photos
+### Photos, the gallery and impact stories
 
-Each image slot shows a custom SVG illustration until a real photo is supplied:
+All photography lives in `public/images/<story>/` and is listed in `data/gallery.ts`:
 
-1. Add the photo to `public/images/` using the filename in `data/images.ts`
-   (for example `public/images/robert-hero.jpg`).
-2. Set `ready: true` for that entry.
+1. Drop the file into `public/images/<story>/` (for example `public/images/red-stop-walk/red-stop-walk-06.jpg`).
+2. Add a row to `PHOTOS` with its `id`, `story`, `width`, `height`, a descriptive `alt` and, if a photographer's
+   watermark is visible, a `credit`.
+3. For a new event, add a story to `STORIES`. Summaries describe only what the photos and banners show; add
+   `figures` (e.g. attendance) only once a source confirms them.
+
+The real cover for *If I Knew Then* is still to come: set its `cover` in `data/books.ts` when the file arrives.
 
 Next.js automatically serves optimised AVIF/WebP versions. Use authentic photographs only.
 
@@ -249,7 +256,6 @@ components/
   layout/                 Header, footer, menu, summit moment
   sections/               Page sections
   features/               Interactive features (compass, planner, pass, palette, journey, forms…)
-  illustrations/          Placeholder SVG illustrations
 data/                     All site wording and content
 hooks/                    React hooks (forms, journey, tilt, active section)
 lib/                      Server logic: env, db, queries, validation, SEO

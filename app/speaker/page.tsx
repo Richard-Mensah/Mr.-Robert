@@ -5,6 +5,7 @@ import EventPlanner from "@/components/features/speaker/EventPlanner"
 import ImagePanel from "@/components/ui/ImagePanel"
 import Container from "@/components/ui/Container"
 import ButtonLink from "@/components/ui/ButtonLink"
+import PageMoments from "@/components/features/gallery/PageMoments"
 import { IMAGES } from "@/data/images"
 import { pageMetadata } from "@/lib/seo"
 
@@ -52,6 +53,7 @@ export default async function SpeakerPage({ searchParams }: Props) {
         </div>
       </Container>
       <SpeakerThemes title="What Robert speaks about." showFormats ctaHref="#planner" />
+      <PageMoments page="speaker" tone="dark" />
       <EventPlanner />
       <SpeakerInvite brief={{ audience: clip(audience), format: clip(format), topic: clip(topic) }} />
     </>

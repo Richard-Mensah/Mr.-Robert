@@ -45,7 +45,7 @@ export default function OneSheetPage() {
               <p className="mt-3 text-sm leading-relaxed text-muted">{BIOGRAPHY[3]}</p>
             </div>
             <div className="relative aspect-[4/5]">
-              <ImagePanel image={IMAGES.hero} className="h-full w-full" sizes="14rem" showTag={false} />
+              <ImagePanel image={IMAGES.oneSheet} className="h-full w-full" sizes="14rem" />
             </div>
           </div>
 

@@ -1,5 +1,6 @@
 import PageHero from "@/components/sections/PageHero"
 import InsightsListing from "@/components/features/insights/InsightsListing"
+import PageMoments from "@/components/features/gallery/PageMoments"
 import { pageMetadata } from "@/lib/seo"
 
 export const metadata = pageMetadata({
@@ -27,6 +28,7 @@ export default async function InsightsPage({ searchParams }: Props) {
         }
       />
       <InsightsListing category={category ?? null} search={q ?? null} />
+      <PageMoments page="insights" tone="ivory" />
     </>
   )
 }

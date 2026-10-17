@@ -1,18 +1,19 @@
 import BookCover from "@/components/ui/BookCover"
 import { PROFILE } from "@/data/profile"
-import type { Book } from "@/types"
+import type { Book, ImageAsset } from "@/types"
 
 type Props = {
   book: Book
   detailed?: boolean
+  image?: ImageAsset
 }
 
-export default function BookCard({ book, detailed = false }: Props) {
+export default function BookCard({ book, detailed = false, image }: Props) {
   return (
     <article id={book.slug} className="group grid scroll-mt-28 gap-10 sm:grid-cols-12 sm:items-end">
       <div className="sm:col-span-5">
         <div className="book-3d">
-          <BookCover book={book} author={PROFILE.name} />
+          <BookCover book={book} author={PROFILE.name} image={image} />
         </div>
       </div>
       <div className="sm:col-span-7 sm:pb-4">

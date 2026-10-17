@@ -3,6 +3,7 @@ import SectionHeader from "@/components/ui/SectionHeader"
 import ButtonLink from "@/components/ui/ButtonLink"
 import BookCard from "@/components/sections/BookCard"
 import { BOOKS } from "@/data/books"
+import { HOME_BOOK_IMAGES } from "@/data/images"
 
 type Props = {
   title?: string
@@ -33,7 +34,7 @@ export default function BooksSection({
         <div className="mt-20 grid gap-20 lg:grid-cols-2 lg:gap-16">
           {BOOKS.map((book) => (
             <div key={book.slug} data-reveal>
-              <BookCard book={book} detailed={detailed} />
+              <BookCard book={book} detailed={detailed} image={HOME_BOOK_IMAGES[book.slug]} />
             </div>
           ))}
         </div>

@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server"
 import { subscribeSchema } from "@/lib/validations"
 import { saveSubscriber } from "@/lib/subscribers"
+import { guardRequest } from "@/lib/requestGuard"
 import { failure, invalid, ok, readJson } from "@/lib/apiResponse"
 
 const MESSAGES = {
@@ -11,6 +12,9 @@ const MESSAGES = {
 
 // POST /api/subscribe
 export async function POST(request: NextRequest) {
+  const blocked = guardRequest(request, "subscribe", 8)
+  if (blocked) return blocked
+
   try {
     const parsed = subscribeSchema.safeParse(await readJson(request))
     if (!parsed.success) return invalid(parsed.error)

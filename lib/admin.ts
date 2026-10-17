@@ -8,6 +8,7 @@ export type InquiryRow = {
   organisation: string | null
   event_name: string | null
   proposed_date: string | null
+  location: string | null
   topic: string | null
   message: string
   created_at: string | Date
@@ -33,7 +34,7 @@ export async function getAdminData() {
 
   try {
     const [inquiries, subscribers, inquiryCounts, subscriberCounts, compass] = await Promise.all([
-      sql`select id, kind, name, email, organisation, event_name, proposed_date, topic, message, created_at
+      sql`select id, kind, name, email, organisation, event_name, proposed_date, location, topic, message, created_at
           from inquiries order by created_at desc limit ${LIMIT}`,
       sql`select id, email, name, interest, role, created_at
           from subscribers order by created_at desc limit ${LIMIT}`,

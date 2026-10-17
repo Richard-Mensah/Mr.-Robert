@@ -4,6 +4,7 @@ import FocusExplorer from "@/components/features/leadership/FocusExplorer"
 import PartnershipOrbit from "@/components/sections/PartnershipOrbit"
 import CTASection from "@/components/sections/CTASection"
 import { PROFILE } from "@/data/profile"
+import PageMoments from "@/components/features/gallery/PageMoments"
 import { pageMetadata } from "@/lib/seo"
 
 export const metadata = pageMetadata({
@@ -40,6 +41,7 @@ export default function LeadershipPage() {
       />
       <RoleSection />
       <FocusExplorer />
+      <PageMoments page="leadership" />
       <PartnershipOrbit />
       <CTASection
         eyebrow="Partnerships"

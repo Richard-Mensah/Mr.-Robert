@@ -47,6 +47,12 @@ export default function InquiryList({ inquiries }: Props) {
                     <dd className="text-ink">{inquiry.proposed_date}</dd>
                   </div>
                 )}
+                {inquiry.location && (
+                  <div>
+                    <dt className="text-xs uppercase tracking-wider">Location</dt>
+                    <dd className="text-ink">{inquiry.location}</dd>
+                  </div>
+                )}
                 {inquiry.topic && (
                   <div>
                     <dt className="text-xs uppercase tracking-wider">Topic</dt>

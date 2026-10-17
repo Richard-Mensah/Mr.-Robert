@@ -45,7 +45,7 @@ export default function Header() {
       >
         <Wordmark tone="light" />
         <nav aria-label="Primary" className="hidden xl:block">
-          <ul className="flex items-center gap-5">
+          <ul className="flex items-center gap-4">
             {PRIMARY_NAV.map((item) => (
               <li key={item.href}>
                 <Link
