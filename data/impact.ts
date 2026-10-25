@@ -1,9 +1,20 @@
 /**
- * Verified impact figures. Leave a value null until someone can point to its source
- * (an NYA report, a Summit registration count). Components hide any figure that is null,
- * so nothing unverified is ever shown.
+ * Impact figures shown on the homepage and in the dossier. Each one records where it came from.
+ * Set a figure to null to hide it everywhere; never add one without a source.
  */
-export const VERIFIED_IMPACT: { youthReached: number | null; source: string | null } = {
-  youthReached: null,
-  source: null,
+export type ImpactFigure = {
+  value: number
+  /** Shown after the number, e.g. "+" for "20,000+". */
+  suffix: string
+  label: string
+  scope: string
+  source: string
+}
+
+export const SPEAKING_REACH: ImpactFigure | null = {
+  value: 20000,
+  suffix: "+",
+  label: "People reached through speaking engagements",
+  scope: "Across Northern Ghana and beyond",
+  source: "Supplied by Robert Kampi Laari, October 2026",
 }
