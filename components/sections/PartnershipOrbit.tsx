@@ -12,7 +12,7 @@ const PARTNERS = [
 
 export default function PartnershipOrbit() {
   return (
-    <section id="partners" aria-labelledby="partners-title" data-checkpoint="Partners" className="starfield aurora relative scroll-mt-20 overflow-hidden bg-night py-24 text-ivory lg:py-36">
+    <section id="partners" aria-labelledby="partners-title" data-checkpoint="Partners" className="grid-chancery aurora relative scroll-mt-20 overflow-hidden bg-night py-24 text-ivory lg:py-36">
       <Container size="wide" className="relative">
         <SectionHeader
           id="partners-title"
@@ -46,7 +46,7 @@ export default function PartnershipOrbit() {
           <div data-reveal className="relative z-10 mx-auto flex size-44 flex-col items-center justify-center rounded-full bg-gold-light text-center text-ink shadow-[0_0_80px_rgba(230,199,126,0.5)] lg:absolute lg:left-1/2 lg:top-[290px] lg:-translate-x-1/2 lg:-translate-y-1/2">
             <Users aria-hidden="true" className="size-8" strokeWidth={1.5} />
             <p className="mt-2 font-serif text-xl leading-tight">Young people</p>
-            <p className="font-display text-[0.55rem] tracking-[0.2em] text-ink/60">At the centre</p>
+            <p className="font-display text-[0.68rem] tracking-[0.2em] text-ink/60">At the centre</p>
           </div>
 
           <ul className="mt-10 grid gap-4 lg:mt-0">

@@ -15,7 +15,7 @@ export default function StoryProgress({ photoIds }: Props) {
 
   if (complete) {
     return (
-      <span className="inline-flex items-center gap-1.5 bg-gold-light px-2.5 py-1 font-display text-[0.6rem] tracking-[0.18em] text-ink">
+      <span className="inline-flex items-center gap-1.5 bg-gold-light px-2.5 py-1 font-display text-[0.72rem] tracking-[0.18em] text-ink">
         <Check aria-hidden="true" className="size-3" strokeWidth={2.5} />
         Story collected
       </span>
@@ -23,7 +23,7 @@ export default function StoryProgress({ photoIds }: Props) {
   }
 
   return (
-    <span className="font-display text-[0.6rem] tracking-[0.18em] text-ivory/80">
+    <span className="font-display text-[0.72rem] tracking-[0.18em] text-ivory/80">
       {count} / {photoIds.length} collected
     </span>
   )

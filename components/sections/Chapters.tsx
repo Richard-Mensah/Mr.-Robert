@@ -39,7 +39,7 @@ export default function Chapters() {
                         index === activeIndex ? "font-medium text-ink" : "text-muted hover:text-ink",
                       )}
                     >
-                      <span className="mr-3 font-display text-[0.6rem] tracking-[0.18em] text-gold-deep">
+                      <span className="mr-3 font-display text-[0.72rem] tracking-[0.18em] text-gold-deep">
                         {String(index + 1).padStart(2, "0")}
                       </span>
                       {chapter.label}

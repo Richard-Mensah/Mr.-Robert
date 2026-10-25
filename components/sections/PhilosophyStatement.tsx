@@ -9,7 +9,7 @@ type Props = {
 /** The central belief from Robert's profile, presented as a major visual statement. */
 export default function PhilosophyStatement({ eyebrow = "What he believes" }: Props) {
   return (
-    <section aria-label="Philosophy" data-checkpoint="Belief" className="starfield aurora relative overflow-hidden bg-forest-deep py-28 text-ivory lg:py-44">
+    <section aria-label="Philosophy" data-checkpoint="Belief" className="grid-chancery aurora relative overflow-hidden bg-forest-deep py-28 text-ivory lg:py-44">
       <div
         aria-hidden="true"
         className="absolute -right-24 top-1/2 hidden -translate-y-1/2 select-none font-serif text-[28rem] leading-none text-ivory/[0.03] lg:block"
@@ -26,7 +26,7 @@ export default function PhilosophyStatement({ eyebrow = "What he believes" }: Pr
               future.
             </p>
           </blockquote>
-          <figcaption className="mt-12 flex items-center gap-4 text-xs font-semibold uppercase tracking-eyebrow text-ivory/60">
+          <figcaption className="mt-12 flex items-center gap-4 font-display text-sm tracking-eyebrow text-ivory/60">
             <span aria-hidden="true" className="h-px w-12 bg-gold-light" />
             {PROFILE.name}
           </figcaption>

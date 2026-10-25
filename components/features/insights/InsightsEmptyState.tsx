@@ -21,7 +21,7 @@ export default function InsightsEmptyState({ filtered }: Props) {
   return (
     <div className="grid gap-12 py-20 lg:grid-cols-12 lg:py-28">
       <div className="lg:col-span-7">
-        <p className="text-xs font-semibold uppercase tracking-eyebrow text-gold-deep">Coming soon</p>
+        <p className="font-display text-sm tracking-eyebrow text-gold-deep">Coming soon</p>
         <p className="mt-6 font-serif text-4xl leading-tight tracking-tight text-ink sm:text-5xl">
           Insights are being prepared.
         </p>
@@ -33,7 +33,7 @@ export default function InsightsEmptyState({ filtered }: Props) {
         </div>
       </div>
       <div className="lg:col-span-5">
-        <p className="text-xs font-semibold uppercase tracking-eyebrow text-muted">Topics to expect</p>
+        <p className="font-display text-sm tracking-eyebrow text-muted">Topics to expect</p>
         <ul className="mt-6 divide-y divide-ink/10 border-y border-ink/10">
           {INSIGHT_CATEGORIES.map((category) => (
             <li key={category.slug} className="py-3 font-serif text-xl text-ink">

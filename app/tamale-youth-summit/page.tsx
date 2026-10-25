@@ -20,13 +20,14 @@ export default function TamaleYouthSummitPage() {
     <>
       <PageHero
         eyebrow="Founded and convened by Robert Kampi Laari"
+        label="Tamale Youth Summit"
         title={
           <>
             Tamale Youth <em className="text-gold-shimmer">Summit</em>
           </>
         }
         intro={
-          <p className="text-sm font-semibold uppercase tracking-eyebrow text-forest-light">
+          <p className="font-display text-base tracking-eyebrow text-forest-light">
             Inspiring &middot; Equipping &middot; Connecting
           </p>
         }

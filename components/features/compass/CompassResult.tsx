@@ -35,7 +35,7 @@ export default function CompassResult({ level, onRestart }: Props) {
       </ol>
 
       <div className="mt-10 border border-gold-light/25 bg-ivory/[0.04] p-6">
-        <p className="font-display text-[0.65rem] tracking-[0.2em] text-gold-light">Your next step</p>
+        <p className="font-display text-[0.76rem] tracking-[0.2em] text-gold-light">Your next step</p>
         <p className="mt-3 text-lg leading-relaxed">{next.advice}</p>
         <Link
           href={next.href}

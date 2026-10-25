@@ -11,7 +11,7 @@ export default function FeaturedInsight({ insight }: Props) {
   return (
     <article className="group relative grid gap-10 bg-ink p-8 text-ivory sm:p-12 lg:grid-cols-12 lg:items-center lg:p-16">
       <div className="lg:col-span-7">
-        <p className="text-xs font-semibold uppercase tracking-eyebrow text-gold-light">Featured</p>
+        <p className="font-display text-sm tracking-eyebrow text-gold-light">Featured</p>
         <h2 className="mt-6 font-serif text-3xl leading-[1.1] tracking-tight text-balance sm:text-5xl">
           <Link href={`/insights/${insight.slug}`} className="after:absolute after:inset-0 group-hover:text-gold-light">
             {insight.title}

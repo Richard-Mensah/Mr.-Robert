@@ -32,7 +32,7 @@ export default function GalleryGrid({ photos }: Props) {
           {photos.length} {photos.length === 1 ? "moment" : "moments"} · open a photo to collect it
         </p>
         <div className="flex items-center gap-3" aria-live="polite">
-          <span className="font-display text-[0.65rem] tracking-[0.2em] text-gold-deep">
+          <span className="font-display text-[0.76rem] tracking-[0.2em] text-gold-deep">
             Collected {collected.length} / {total}
           </span>
           <span className="h-1.5 w-32 overflow-hidden bg-ink/10" aria-hidden="true">

@@ -60,7 +60,7 @@ export default function MobileMenu({ pathname }: Props) {
         aria-modal="true"
         aria-label="Site navigation"
         hidden={!open}
-        className="starfield aurora fixed inset-0 z-50 overflow-y-auto bg-night text-ivory"
+        className="grid-chancery aurora fixed inset-0 z-50 overflow-y-auto bg-night text-ivory"
       >
         <Container size="wide" className="flex h-20 items-center justify-between">
           <Wordmark tone="light" onNavigate={() => setOpen(false)} />

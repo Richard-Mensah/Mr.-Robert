@@ -12,7 +12,7 @@ const SPANS = ["col-span-2 row-span-2", "", "", "", "", "col-span-2"]
 /** Homepage strip of real photographs leading into the gallery and impact stories. */
 export default function GalleryTeaser() {
   return (
-    <section aria-labelledby="teaser-title" data-checkpoint="Moments" className="bg-night py-24 text-ivory lg:py-32">
+    <section aria-labelledby="teaser-title" data-checkpoint="Field Record" className="bg-night py-24 text-ivory lg:py-32">
       <Container size="wide">
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
@@ -23,8 +23,8 @@ export default function GalleryTeaser() {
           </div>
           <div data-reveal className="lg:col-span-5">
             <p className="text-lg leading-relaxed text-ivory/75">
-              Summits, clean-ups, classrooms and ceremonies. Explore the stories, collect the moments, and play
-              Which Moment?
+              Summits, clean-ups, classrooms and ceremonies. Explore the stories, log the moments, and test yourself
+              in Field Recall.
             </p>
             <div className="mt-8">
               <ButtonLink href="/gallery" label="Explore the gallery" />

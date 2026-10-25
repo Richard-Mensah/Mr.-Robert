@@ -28,7 +28,7 @@ export default async function SpeakerPage({ searchParams }: Props) {
   return (
     <>
       <PageHero
-        eyebrow="Motivational speaker"
+        eyebrow="Addresses and speaking"
         title={
           <>
             Conversations that move people <em className="text-gold-shimmer">forward.</em>

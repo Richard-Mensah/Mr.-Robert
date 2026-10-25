@@ -1,31 +1,29 @@
 # Robert Kampi Laari
 
-The official website of Robert Kampi Laari: youth development advocate, Regional Director of the National Youth
-Authority in Ghana's North East Region, author, speaker, and the founder of the Tamale Youth Summit.
+The official website of Robert Kampi Laari: Regional Director of the National Youth Authority in Ghana's North
+East Region, youth development advocate, author, speaker, and founder of the Tamale Youth Summit.
 
-![The homepage: a night-green hero with Robert's portrait and the line "Empowering young people to lead, build and transform."](docs/screenshots/home-hero.jpg)
+The site has one job above the others. When Robert applies for a scholarship, a fellowship or an international
+programme, a selection panel should be able to open this site and come away with a clear, verifiable picture
+of his mandate and his record in a few minutes. Everything else (the Summit pages, the books, the speaking
+planner) still works for organisers, media and young people, but the design is pitched at that reviewer.
 
-Robert's motto is "See you at the top", and the site takes it literally. Visitors climb through his story,
-earn milestones as they explore, collect real photographs from his work, and can test what they've learned in a
-small photo game. Underneath that, it's a fast, accessible Next.js site that does three practical jobs: it tells
-his story, it gets him invited to speak, and it collects interest in the Summit and his books.
+![The homepage hero: a night-green page with Robert's portrait in a framed credential card, a gold mandate seal, and the headline "Empowering young people to lead, build and transform."](docs/screenshots/home-hero.jpg)
 
 Built with Next.js 15 (App Router), TypeScript, Tailwind CSS v4 and Neon Postgres. Designed and developed by
 Richard Mensah.
-
-<p>
-  <img src="public/images/tamale-youth-summit-2025/tamale-youth-summit-2025-01.jpg" width="32%" alt="Robert addressing a full hall at the Tamale Youth Summit 2025" />
-  <img src="public/images/national-youth-month-2026/national-youth-month-2026-08.jpg" width="32%" alt="Robert and young volunteers behind the 2026 National Youth Month banner" />
-  <img src="public/images/dream-big-campus-tour/dream-big-campus-tour-02.jpg" width="32%" alt="Robert presenting a copy of If I Knew Then to a student" />
-</p>
 
 ---
 
 ## Contents
 
+- [Who it's for](#who-its-for)
 - [What's on the site](#whats-on-the-site)
-- [Real photography, and where it lives](#real-photography-and-where-it-lives)
-- [The game layer](#the-game-layer)
+- [Design system](#design-system)
+- [Credentials: the game layer](#credentials-the-game-layer)
+- [The Record](#the-record)
+- [The Briefing Dossier](#the-briefing-dossier)
+- [Motion and accessibility](#motion-and-accessibility)
 - [Running it locally](#running-it-locally)
 - [Environment variables](#environment-variables)
 - [The database (Neon)](#the-database-neon)
@@ -43,118 +41,194 @@ Richard Mensah.
 
 ---
 
+## Who it's for
+
+| Reader | What they need | Where the site sends them |
+|---|---|---|
+| Scholarship, fellowship and programme committees | Mandate, record, publications, education, in a form they can file | `/dossier`, then Leadership and the Gallery |
+| Event organisers | Themes, formats, a way to book | `/speaker`, the invitation planner, the one-sheet |
+| Media | Background and a direct line | `/about`, `/speaker/one-sheet`, `/contact` |
+| Organisations | Focus areas and how to partner | `/leadership` |
+| Young people | The framework, the Compass, the Summit | `/youth-development`, `/tamale-youth-summit` |
+
+The "Choose your path" switcher on the homepage covers all five, with committees listed first.
+
+---
+
 ## What's on the site
 
 | Page | What you'll find there |
 |---|---|
-| Home `/` | The hero, a "choose your path" switcher (young person, organisation, event organiser, media), Robert's story in brief, the Summit, a strip of field photos and the books |
-| About `/about` | His biography told in five scroll-driven chapters, plus the motto manifesto |
-| Leadership `/leadership` | His public role at the National Youth Authority, a focus-area explorer and a partnership diagram |
-| Youth Development `/youth-development` | A five-level growth framework and the Leadership Compass, a one-minute reflection that suggests where you are on it |
-| Author `/author` | *If I Knew Then* and *Beyond Handshakes* as 3D books you can flip over, with a "tell me when it's out" sign-up |
-| Speaker `/speaker` | Speaking themes, and an event planner that drafts an invitation brief and pre-fills the booking form |
-| Speaker one-sheet `/speaker/one-sheet` | A printable page for organisers and press (Print, then Save as PDF) |
-| Tamale Youth Summit `/tamale-youth-summit` | What the Summit is for, and a delegate pass that personalises itself as you type |
-| Gallery `/gallery` | Fifteen impact stories, all 81 photographs, and the *Which moment?* game |
+| Home `/` | The hero with his current mandate, The Record slideshow, a portfolio summary, the path switcher, the Summit, field photos and the books |
+| Briefing Dossier `/dossier` | A two-sheet, print-ready candidate summary for committees |
+| About `/about` | His biography in five scroll-driven chapters |
+| Leadership `/leadership` | The public role at the NYA, a focus-area explorer with SDG alignment, and a partnership diagram |
+| Youth Development `/youth-development` | A five-level growth framework and the Leadership Compass |
+| Author `/author` | *If I Knew Then* and *Beyond Handshakes* as 3D books, with a release sign-up |
+| Speaker `/speaker` | Speaking themes and an event planner that drafts an invitation brief |
+| Speaker one-sheet `/speaker/one-sheet` | A printable page for organisers and press |
+| Tamale Youth Summit `/tamale-youth-summit` | What the Summit is for, and a delegate credential that personalises itself as you type |
+| Gallery `/gallery` | The field record: fifteen impact stories, all 81 photographs, and the Field Recall exercise |
 | Insights `/insights` | Articles with search and category filters |
-| Contact `/contact` | A three-step contact wizard |
-
-Every page also has a command palette (`Ctrl+K` or `⌘K`) for jumping straight to any page or action.
-
-<p>
-  <img src="docs/screenshots/author-books.jpg" width="49%" alt="The Author page with both books" />
-  <img src="docs/screenshots/delegate-pass.jpg" width="49%" alt="The Tamale Youth Summit delegate pass" />
-</p>
+| Contact `/contact` | A three-step correspondence wizard |
 
 ---
 
-## Real photography, and where it lives
+## Design system
 
-There are no stock images or AI illustrations anywhere on this site. Every picture is a real photograph from
-Robert's work: summits, school visits, clean-up days, apprenticeship ceremonies, campus tours. There are 81 of
-them, grouped into 17 folders by event.
+The look is meant to read as institutional rather than personal, closer to a policy institute or a chancery
+than to a motivational brand.
 
-```
-public/images/
-  tamale-youth-summit-2026/    10 photos
-  national-youth-month-2026/   11
-  dream-big-campus-tour/        8
-  uds-address/                  8
-  talks-and-engagements/        8
-  north-east-youth-summit-2026/ 6
-  national-apprenticeship/      5
-  red-stop-walk/                5
-  ...and 9 smaller folders, plus books/ and portrait/
-```
+### Colour
 
-Two files control where photos appear:
+The colours come from the RK logo. Night green carries the dark surfaces, ivory carries the documents, and two
+accents split the meaning between them. Gold always means a credential or a primary action. A vivid emerald
+always means progress, information or something you can interact with. The Ghana flag colours appear only as thin rules, on the
+letterhead, the hero card and the delegate credential.
 
-- **`data/gallery.ts`** lists every photo (its size, alt text and photographer credit) and the 17 stories they
-  belong to. The gallery and the impact stories are built from it.
-- **`data/images.ts`** decides which photo goes on which page.
+| Token | Value | Used for |
+|---|---|---|
+| `night` / `ink` | `#0b2a20` / `#06140f` | Heroes, header, footer; body text on light pages |
+| `night-soft` | `#10382a` | Raised cards on dark surfaces |
+| `ivory` / `paper` | `#f5f1e8` / `#fbf9f4` | Light sections and dossier sheets |
+| `gold` / `gold-light` / `gold-deep` | `#b8913f` / `#e6c77e` / `#8a6a27` | Seals, rules, primary buttons, gold text on light |
+| `cerulean` / `cerulean-light` | `#17784f` / `#5fe3a6` | Emerald: progress rings, focus rings, status pills, data chips |
+| `forest` / `forest-light` | `#1f4d3a` / `#8fb8a2` | Secondary text and labels |
+| `heritage` | `#1f5a43` | Ghana green, in small doses |
 
-That second file has one firm rule: **a photo appears on one page only.** The gallery is the exception, because
-it's the archive of everything. Each page gets its own set of three or four, so moving around the site never
-feels repetitive. If someone accidentally reuses a photo, the site throws an error in development that names
-the duplicate, so it can't slip through to production.
+The emerald tokens are still called `cerulean`. The site briefly tried a navy-and-blue palette before going back
+to green, and the names were kept so a palette change stays a one-file edit in `app/globals.css`.
 
-![Impact stories on the Gallery page](docs/screenshots/impact-stories.jpg)
+Every text and background pair used on the site meets WCAG AA. The lowest is `gold-deep` on paper at 4.8:1.
 
-### Adding a photo
+### Type
 
-1. Put the file in the right event folder, e.g. `public/images/red-stop-walk/red-stop-walk-06.jpg`.
-2. Add a row to `PHOTOS` in `data/gallery.ts` with its `id`, `story`, `width`, `height` and a plain description as
-   `alt` (who, what, where). If a photographer's watermark is visible, add `credit`.
-3. To feature it on a page, add its id to that page in `data/images.ts`.
+Labels, seals and section numbers are set in Cormorant SC, which gives them the small-caps look of a printed
+letterhead. Headings use Newsreader and body text uses Inter. Allura is reserved for the "See you at the top"
+signature.
 
-For a brand-new event, add a story to `STORIES` as well. Keep the summary to what the photos and banners
-actually show. Each story has an optional `figures` field for things like attendance. It stays hidden until you
-fill it in, and you should only fill it in when someone has confirmed the number.
+### Surfaces
 
-Next.js serves AVIF and WebP versions automatically, so there's no need to compress photos by hand. Files up
-to about 1–2 MB are fine.
+Dark sections sit on a faint twelve-column hairline grid (`.grid-chancery`). Credentials
+use a guilloche pattern like a banknote (`.guilloche`) and embossed seals (`.seal-emboss`). Section labels
+carry a gold and emerald double rule (`.data-rule`). All of these live in `app/globals.css`, along with the
+keyframes for the seal stamp and the slideshow.
 
-> **Still to come:** a flat cover image for *If I Knew Then*. For now the site uses the photo of Robert holding
-> the book up at the IAAS Seminar. When the real cover arrives, set it as `cover` in `data/books.ts`.
+The reusable pieces are in `components/ui/`: `Seal`, `StatusPill`, `DataRule`, `ProgressRing` and `CountUp`.
 
 ---
 
-## The game layer
+## Credentials: the game layer
 
-Gamification here is gentle. Nothing blocks the content, nobody has to sign up, and all progress is stored in
-the visitor's own browser.
+A reviewer collects credentials as they read. Visiting a section verifies its credential, and three are earned
+by doing something. Nothing is gated, nobody signs up, and progress is stored only in the visitor's browser.
 
-**The climb.** A thin altitude meter on the right shows how far down the page you are, from Base to Summit.
-Visiting sections and finishing activities unlocks eleven milestones. A small toast celebrates each one, and
-the Journey panel in the header lists the rest:
+![A credential being verified: a gold seal stamps into a toast reading "Credential verified, Profile Reviewed", while the page hero shows the same credential.](docs/screenshots/seal-toast.jpg)
 
-| Milestone | How to earn it |
+| Credential | Category | How it's earned |
+|---|---|---|
+| Profile Reviewed | Mandate | Visit About |
+| Mandate Verified | Mandate | Visit Leadership |
+| Framework Studied | Mandate | Visit Youth Development |
+| Publications Logged | Record | Visit Author |
+| Addresses Reviewed | Record | Visit Speaker |
+| Convening Record | Record | Visit the Tamale Youth Summit |
+| Field Record | Record | Visit the Gallery |
+| Channel Opened | Engagement | Visit Contact |
+| Compass Assessed | Engagement | Finish the Leadership Compass |
+| Field Recall | Engagement | Score 4 or 5 out of 5 in the Field Recall exercise |
+| Full Archive | Engagement | Open at least one photo from every impact story |
+
+Every inner page shows the credential it awards at the foot of its hero, with a running count. When one is
+earned, a seal stamps down in a toast in the corner. The Briefing button in the header carries a progress ring
+and opens a passport-style panel that groups the seals by category and links to the dossier.
+
+Credentials also raise the reviewer's rank. The rank shows in the Briefing panel, and the toast calls it out
+when a new one is reached.
+
+| Rank | Reached at |
 |---|---|
-| Pathfinder | Visit About |
-| Steward | Visit Leadership |
-| Catalyst | Visit Youth Development |
-| Reader | Visit Author |
-| Listener | Visit Speaker |
-| Convener | Visit the Tamale Youth Summit |
-| Witness | Visit the Gallery |
-| Connector | Visit Contact |
-| Navigator | Finish the Leadership Compass |
-| Storykeeper | Score 4 or 5 out of 5 in *Which moment?* |
-| Curator | Collect at least one photo from every impact story |
+| 1. Observer | 0 credentials |
+| 2. Reviewer | 3 |
+| 3. Senior Reviewer | 6 |
+| 4. Rapporteur | 9 |
+| 5. Envoy | All 11 |
 
-**Collecting moments.** Most pages have a "Moments from the field" mosaic. Open a photo and it's collected: the
-tag turns gold, a row of diamonds fills in, and once you've opened every photo on that page it reads "All
-moments collected". The same collection counts in the gallery, which tracks progress across all 81 photos.
+![The Leadership page hero, ending in a "Credential verified: Mandate Verified" badge.](docs/screenshots/page-credential.jpg)
 
-![A Moments from the field mosaic on the Speaker page](docs/screenshots/speaker-moments.jpg)
+The ids in `data/journey.ts` (`pathfinder`, `steward` and so on) are left over from the earlier "climb"
+version of the game. They were kept on purpose, so anyone who visited before the redesign keeps their
+progress.
 
-**Which moment?** At the bottom of the gallery, five real photos come up one at a time and you pick which
-event each is from. It keeps score and streaks. It's harder than it sounds, because two years of Tamale Youth
-Summit photos look very alike.
+Photo collecting still works as before. Open a photo on any page and it's logged; the gallery tracks progress
+across all 81.
 
-![The moments grid with filters and the collection counter](docs/screenshots/moments-gallery.jpg)
+---
 
-Everything respects the operating system's reduced-motion setting, works with a keyboard, and has proper alt text.
+## The Record
+
+Directly under the homepage hero is a full-width slideshow of his record. It has eight entries: the public
+mandate, six field stories and the two books.
+
+![The Record: a full-bleed photograph behind a dark green gradient, the entry "Regional Director, National Youth Authority (NYA)", and a filmstrip index with play and pause controls.](docs/screenshots/record-slideshow.jpg)
+
+Each slide is built from data the site already has (`data/record.ts` reads `data/gallery.ts`,
+`data/profile.ts` and `data/books.ts`), so there's no separate copy to keep in sync and no room for an
+invented figure. It advances every seven seconds with a slow zoom on the photograph and a progress bar that
+fills along the filmstrip. Hovering or focusing inside it pauses the timer. Arrow keys and swipes move between
+slides, and there's always a visible pause button.
+
+To change what appears, edit `STORY_SLUGS` in `data/record.ts`.
+
+---
+
+## The Briefing Dossier
+
+`/dossier` is the page to send a committee. It prints as exactly two A4 pages. Each sheet carries the night-green
+letterhead with the gold and Ghana-flag rule, and a running footer with the page number. Brand colours are kept
+in print (`print-color-adjust: exact`), and the page sets its own zero margin, so browsers leave off their date
+and URL lines.
+
+The first sheet, "Profile and mandate", opens with his portrait, office and a short introduction. Below that
+are the record in figures, the mandate and his governance commitments, the six focus areas with their SDG
+alignment, and his stated position and vision side by side. The second, "Record and engagement", covers the
+Tamale Youth Summit, a photographed field record of eight engagements, the five-level youth development
+framework, publications with covers, education, speaking themes and formats, and a correspondence panel signed
+with the motto.
+
+To get a file, click "Print or save as PDF" on the page and choose "Save as PDF" as the destination.
+
+![The Briefing Dossier: an ivory A4 sheet under a night-green letterhead, with the portrait, figures, mandate and a focus-area table carrying SDG chips.](docs/screenshots/dossier.jpg)
+
+The focus-area table maps each area to the UN Sustainable Development Goals (`data/dossier.ts`). That mapping
+is the site's own editorial framing, meant to help international readers place the work. It is footnoted on
+the page as such, and it must never be presented as a UN affiliation or endorsement.
+
+**Impact figures.** The figures on the dossier and the homepage are counted from the site's own data. A "young
+people reached" figure is ready to show in both places, animated on the homepage, but it stays hidden until
+it's set in `data/impact.ts` along with its source. Only fill it in from a document someone can point to,
+such as an NYA report or Summit registration records.
+
+---
+
+## Motion and accessibility
+
+The motion is kept small and slow, so a reviewer reading closely isn't distracted by it. It covers:
+
+- headlines that rise line by line from a mask
+- a seal that stamps when a credential is earned
+- figures that count up, used only on counts the site can verify (field stories, books)
+- the slideshow's zoom
+
+Everything animates transform or opacity only.
+
+If the visitor's system asks for reduced motion, the animations collapse to instant changes and the slideshow
+starts paused. Every interactive piece works from the keyboard, with a visible emerald focus ring. Every
+photograph has alt text written from what it actually shows.
+
+On a phone the page keeps its layout at 390px with no sideways scrolling.
+
+![The homepage at phone width.](docs/screenshots/mobile-home.jpg)
 
 ---
 
@@ -254,13 +328,15 @@ All the wording lives in `data/`, separate from the design. Change the words the
 |---|---|
 | `data/profile.ts` | Biography, current role, education, belief, vision, motto |
 | `data/chapters.ts` | The five chapters on the About page |
-| `data/pillars.ts` | At-a-glance items, leadership areas, Summit focus, the five-level framework, manifesto lines |
+| `data/pillars.ts` | Portfolio items, leadership areas, Summit focus, the five-level framework, manifesto lines |
 | `data/books.ts` | The books. Add synopses, publishers and buying links when they exist |
 | `data/speaking.ts` | Speaking themes and formats |
 | `data/compass.ts` | Compass questions and the advice for each level |
 | `data/gallery.ts` | Every photo and every impact story |
 | `data/images.ts` | Which photo goes where, plus the one-page-per-photo check |
-| `data/journey.ts` | The eleven milestones |
+| `data/journey.ts` | The eleven credentials and their categories |
+| `data/record.ts` | Which stories appear in The Record |
+| `data/dossier.ts` | The editorial SDG alignment and its footnote |
 | `data/paths.ts`, `data/commands.ts` | The path switcher and the command palette |
 | `data/navigation.ts` | The menu and social links (replace each `null` with a real profile URL) |
 
@@ -305,8 +381,8 @@ Colours and fonts are set once, in `app/globals.css`:
 
 | | |
 |---|---|
-| Colours | Night green `#0b2a20`, gold `#e6c77e`, ivory `#f5f1e8` |
-| Fonts | Cinzel for labels, Newsreader for headings, Inter for body text, Allura for the "See you at the top" signature |
+| Colours | Night green `#0b2a20`, gold `#e6c77e`, emerald `#5fe3a6`, ivory `#f5f1e8` (full table in [Design system](#design-system)) |
+| Fonts | Cormorant SC for labels, Newsreader for headings, Inter for body text, Allura for the "See you at the top" signature |
 
 ---
 
@@ -368,15 +444,16 @@ ever shows up, the next step is to move the counter into Neon or Upstash so ever
 app/                        Pages and API routes (App Router)
   api/inquiries|subscribe|compass/   Form endpoints
   admin/                    Private inbox
-  gallery/                  Impact stories, all photos, Which moment?
+  dossier/                  Briefing Dossier for committees
+  gallery/                  Impact stories, all photos, Field Recall
   speaker/one-sheet/        Printable one-sheet
 components/
-  ui/                       Small building blocks (buttons, image panel, tilt card…)
+  ui/                       Small building blocks (seal, status pill, progress ring, buttons…)
   layout/                   Header, footer, mobile menu
   sections/                 Page sections
-  features/                 Interactive pieces: gallery, journey, compass, planner, pass, forms…
-data/                       All wording, photos and milestones
-hooks/                      useJourney, useCollection, useTilt, form hooks
+  features/                 Interactive pieces: credentials, the Record, dossier, gallery, compass, forms…
+data/                       All wording, photos and credentials
+hooks/                      useJourney, useSlideshow, useCollection, useTilt, form hooks
 lib/                        env, db, queries, validation, request guard, SEO
 db/schema.sql               Database schema
 docs/screenshots/           The images in this README

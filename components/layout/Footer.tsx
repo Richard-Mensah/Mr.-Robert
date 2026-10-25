@@ -9,7 +9,7 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="starfield aurora relative overflow-hidden bg-ink text-ivory print:hidden">
+    <footer className="grid-chancery aurora relative overflow-hidden bg-ink text-ivory print:hidden">
       <Container size="wide" className="relative pb-10 pt-20 lg:pt-28">
         <SummitMoment />
         <div className="gold-line mt-20" />
@@ -23,7 +23,7 @@ export default function Footer() {
           <nav aria-label="Footer" className="lg:col-span-4">
             <p className="font-display text-xs tracking-eyebrow text-gold-light">Explore</p>
             <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
-              {[...PRIMARY_NAV, CONTACT_NAV].map((item) => (
+              {[...PRIMARY_NAV, CONTACT_NAV, { label: "Briefing Dossier", href: "/dossier" }].map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className="text-ivory/75 transition-colors hover:text-gold-light">
                     {item.label}
@@ -62,7 +62,7 @@ export default function Footer() {
           <p>
             &copy; {year} {SITE_NAME}. All rights reserved.
           </p>
-          <p>Youth &middot; Leadership &middot; Opportunity</p>
+          <p>Youth &middot; Leadership &middot; Public Service</p>
         </div>
       </Container>
     </footer>

@@ -17,7 +17,7 @@ export default function BookCard({ book, detailed = false, image }: Props) {
         </div>
       </div>
       <div className="sm:col-span-7 sm:pb-4">
-        <p className="text-xs font-semibold uppercase tracking-eyebrow text-gold-deep">A book by {PROFILE.name}</p>
+        <p className="font-display text-sm tracking-eyebrow text-gold-deep">A book by {PROFILE.name}</p>
         <h3 className="mt-4 font-serif text-3xl leading-tight tracking-tight text-ink sm:text-4xl">
           <cite className="not-italic">{book.title}</cite>
         </h3>

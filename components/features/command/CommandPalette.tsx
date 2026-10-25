@@ -122,7 +122,7 @@ export default function CommandPalette() {
                 index === active ? "bg-gold-light text-ink" : "text-ivory/85",
               )}
             >
-              <span className={cn("w-16 shrink-0 font-display text-[0.55rem] tracking-[0.18em]", index === active ? "text-ink/60" : "text-gold-light/70")}>
+              <span className={cn("w-16 shrink-0 font-display text-[0.68rem] tracking-[0.18em]", index === active ? "text-ink/60" : "text-gold-light/70")}>
                 {command.group}
               </span>
               <span className="flex-1">{command.label}</span>

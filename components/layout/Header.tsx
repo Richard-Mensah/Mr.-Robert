@@ -52,7 +52,7 @@ export default function Header() {
                   href={item.href}
                   aria-current={isActive(item.href) ? "page" : undefined}
                   className={cn(
-                    "relative py-2 font-display text-[0.7rem] tracking-[0.14em] transition-colors",
+                    "relative py-2 font-display text-[0.8rem] tracking-[0.14em] transition-colors",
                     "after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-gold-light after:transition-transform after:duration-500",
                     "hover:text-gold-light hover:after:scale-x-100",
                     isActive(item.href) ? "text-gold-light after:scale-x-100" : "text-ivory/85",
@@ -68,10 +68,13 @@ export default function Header() {
           <div className="hidden sm:block xl:hidden 2xl:block">
             <JourneyPanel />
           </div>
+          <div className="hidden xl:block 2xl:hidden">
+            <JourneyPanel compact />
+          </div>
           <Link
             href={CONTACT_NAV.href}
             aria-current={isActive(CONTACT_NAV.href) ? "page" : undefined}
-            className="btn-sweep hidden min-h-10 items-center bg-gold-light px-5 font-display text-[0.7rem] tracking-[0.14em] text-ink transition-colors hover:bg-ivory xl:inline-flex"
+            className="btn-sweep hidden min-h-10 items-center bg-gold-light px-5 font-display text-[0.8rem] tracking-[0.14em] text-ink transition-colors hover:bg-ivory xl:inline-flex"
           >
             {CONTACT_NAV.label}
           </Link>

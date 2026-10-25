@@ -41,7 +41,7 @@ export default function FlipBook({ book }: Props) {
           ) : (
             <div className="absolute inset-0 flex rotate-y-180 flex-col justify-between bg-night p-7 text-left text-ivory shadow-[0_30px_60px_-20px_rgba(6,20,15,0.6)] backface-hidden sm:p-9">
               <span aria-hidden="true" className="absolute inset-4 border border-gold-light/20" />
-              <p className="relative font-display text-[0.6rem] tracking-[0.2em] text-gold-light">Back cover</p>
+              <p className="relative font-display text-[0.72rem] tracking-[0.2em] text-gold-light">Back cover</p>
               <div className="relative">
                 <p className="font-serif text-2xl leading-tight">{book.title}</p>
                 {book.subtitle && <p className="mt-3 text-sm leading-relaxed text-ivory/70">{book.subtitle}</p>}

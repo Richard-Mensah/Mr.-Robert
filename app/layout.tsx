@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next"
 import type { ReactNode } from "react"
-import { Allura, Cinzel, Inter, Newsreader } from "next/font/google"
+import { Allura, Cormorant_SC, Inter, Newsreader } from "next/font/google"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import RevealProvider from "@/components/ui/RevealProvider"
@@ -19,7 +19,12 @@ const newsreader = Newsreader({
   style: ["normal", "italic"],
   display: "swap",
 })
-const cinzel = Cinzel({ subsets: ["latin"], variable: "--font-cinzel", display: "swap" })
+const cormorant = Cormorant_SC({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-cormorant",
+  display: "swap",
+})
 const allura = Allura({ subsets: ["latin"], weight: "400", variable: "--font-allura", display: "swap" })
 
 export const metadata: Metadata = {
@@ -46,6 +51,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#0b2a20",
+  colorScheme: "light",
   width: "device-width",
   initialScale: 1,
 }
@@ -54,7 +60,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en-GB"
-      className={`${inter.variable} ${newsreader.variable} ${cinzel.variable} ${allura.variable}`}
+      className={`${inter.variable} ${newsreader.variable} ${cormorant.variable} ${allura.variable}`}
     >
       <body>
         <JsonLd data={[websiteJsonLd(), personJsonLd()]} />

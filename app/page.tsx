@@ -1,4 +1,5 @@
 import Hero from "@/components/sections/Hero"
+import RecordSlideshow from "@/components/features/record/RecordSlideshow"
 import AtAGlance from "@/components/sections/AtAGlance"
 import PathFinder from "@/components/sections/PathFinder"
 import AboutPreview from "@/components/sections/AboutPreview"
@@ -15,6 +16,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <RecordSlideshow />
       <AtAGlance />
       <PathFinder />
       <AboutPreview />

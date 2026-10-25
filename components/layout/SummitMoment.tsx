@@ -30,8 +30,8 @@ export default function SummitMoment() {
       <p className="mt-6 font-script text-5xl text-gold-light sm:text-6xl">{MOTTO}</p>
       <p className="mt-4 text-sm text-ivory/55" aria-live="polite">
         {complete
-          ? "You've explored every peak. Thank you for making the climb."
-          : `${unlocked.length} of ${total} milestones reached. Explore every page to complete the journey.`}
+          ? "Every section reviewed. Your briefing is complete."
+          : `${unlocked.length} of ${total} credentials verified. Review every section to complete the briefing.`}
       </p>
     </div>
   )

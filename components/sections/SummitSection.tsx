@@ -34,7 +34,7 @@ export default function SummitSection({ title = DEFAULT_TITLE, showLink = true, 
           >
             {title}
           </h2>
-          <p data-reveal className="mt-10 text-sm font-semibold uppercase tracking-eyebrow text-gold-deep">
+          <p data-reveal className="mt-10 font-display text-base tracking-eyebrow text-gold-deep">
             Inspiring &middot; Equipping &middot; Connecting
           </p>
           <p data-reveal className="mt-8 max-w-xl text-lg leading-relaxed text-muted">

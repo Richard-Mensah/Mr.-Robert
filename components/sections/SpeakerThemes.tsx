@@ -35,7 +35,7 @@ export default function SpeakerThemes({
 
         <div className="mt-20 grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-8">
-            <h3 className="text-xs font-semibold uppercase tracking-eyebrow text-muted">
+            <h3 className="font-display text-sm tracking-eyebrow text-muted">
               Core themes, drawn from his work and writing
             </h3>
             <ul className="mt-6 grid gap-x-10 sm:grid-cols-2">
@@ -50,10 +50,10 @@ export default function SpeakerThemes({
           </div>
 
           <aside data-reveal className="lg:col-span-4">
-            <div className="starfield aurora relative overflow-hidden border border-gold-light/20 bg-night p-8 text-ivory sm:p-10 lg:sticky lg:top-28">
+            <div className="grid-chancery aurora relative overflow-hidden border border-gold-light/20 bg-night p-8 text-ivory sm:p-10 lg:sticky lg:top-28">
               {showFormats && (
                 <>
-                  <h3 className="text-xs font-semibold uppercase tracking-eyebrow text-ivory/50">
+                  <h3 className="font-display text-sm tracking-eyebrow text-ivory/50">
                     Possible formats
                   </h3>
                   <ul className="mt-6 space-y-3 font-serif text-xl">

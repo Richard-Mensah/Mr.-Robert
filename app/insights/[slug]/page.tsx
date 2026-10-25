@@ -43,7 +43,7 @@ export default async function InsightPage({ params }: Props) {
           mainEntityOfPage: `${SITE_URL}/insights/${insight.slug}`,
         }}
       />
-      <div data-checkpoint="Base Camp" className="starfield aurora relative overflow-hidden bg-night pb-16 pt-32 text-ivory lg:pt-44">
+      <div data-checkpoint="Overview" className="grid-chancery aurora relative overflow-hidden bg-night pb-16 pt-32 text-ivory lg:pt-44">
         <Container size="narrow" className="relative">
           <Link href="/insights" className="inline-flex min-h-11 items-center gap-2 text-sm text-ivory/70 hover:text-gold-light">
             <ArrowLeft aria-hidden="true" className="size-4" strokeWidth={1.5} />

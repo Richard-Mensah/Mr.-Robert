@@ -23,13 +23,13 @@ export default function AboutPreview() {
           </div>
           <dl data-reveal className="mt-12 grid gap-8 border-t border-ink/10 pt-8 sm:grid-cols-2">
             <div>
-              <dt className="text-xs font-semibold uppercase tracking-eyebrow text-muted">Current role</dt>
+              <dt className="font-display text-sm tracking-eyebrow text-muted">Current role</dt>
               <dd className="mt-2 font-serif text-lg text-ink">
                 {PROFILE.currentRole.title}, {PROFILE.currentRole.organisation}
               </dd>
             </div>
             <div>
-              <dt className="text-xs font-semibold uppercase tracking-eyebrow text-muted">Studied</dt>
+              <dt className="font-display text-sm tracking-eyebrow text-muted">Studied</dt>
               <dd className="mt-2 font-serif text-lg text-ink">
                 {PROFILE.education.field}, {PROFILE.education.institution}
               </dd>

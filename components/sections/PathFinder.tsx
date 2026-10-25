@@ -29,7 +29,7 @@ export default function PathFinder() {
   }
 
   return (
-    <section aria-labelledby="path-title" data-checkpoint="Your Path" className="bg-paper py-24 lg:py-32">
+    <section aria-labelledby="path-title" data-checkpoint="Audience" className="bg-paper py-24 lg:py-32">
       <Container size="wide">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
@@ -84,7 +84,7 @@ export default function PathFinder() {
                   className="group flex h-full flex-col border border-ink/10 bg-ivory p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:shadow-[0_24px_50px_-24px_rgba(6,20,15,0.35)]"
                 >
                   <span className="flex items-center justify-between">
-                    <span className="font-display text-[0.6rem] tracking-[0.2em] text-gold-deep">Step {index + 1}</span>
+                    <span className="font-display text-[0.72rem] tracking-[0.2em] text-gold-deep">Step {index + 1}</span>
                     <ArrowUpRight aria-hidden="true" className="size-4 text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gold-deep" />
                   </span>
                   <span className="mt-6 font-serif text-xl leading-snug text-ink">{action.title}</span>

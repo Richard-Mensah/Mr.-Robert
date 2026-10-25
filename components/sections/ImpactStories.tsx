@@ -12,7 +12,7 @@ const CATEGORY_LABEL = Object.fromEntries(STORY_CATEGORIES.map((item) => [item.s
 /** Field stories from Robert's work, each told through its photographs. */
 export default function ImpactStories() {
   return (
-    <section aria-labelledby="impact-title" data-checkpoint="Field notes" className="bg-ivory py-24 lg:py-32">
+    <section aria-labelledby="impact-title" data-checkpoint="Field Record" className="bg-ivory py-24 lg:py-32">
       <Container size="wide">
         <SectionHeader
           id="impact-title"
@@ -22,7 +22,7 @@ export default function ImpactStories() {
           intro={
             <p>
               Summits, classrooms, clean-ups and ceremonies across Ghana&apos;s North. Open a story to see its moments,
-              and collect them all to earn the Curator milestone.
+              and collect them all to earn the Full Archive credential.
             </p>
           }
         />
@@ -42,7 +42,7 @@ export default function ImpactStories() {
                 <Link
                   href={`/gallery?story=${story.slug}#moments`}
                   scroll={false}
-                  className="group relative flex h-full min-h-[22rem] flex-col justify-end overflow-hidden bg-night text-ivory"
+                  className="group relative flex h-full min-h-[30rem] flex-col justify-end overflow-hidden bg-night text-ivory sm:min-h-[24rem]"
                 >
                   <Image
                     src={cover.src}
@@ -51,10 +51,10 @@ export default function ImpactStories() {
                     sizes={featured ? "(min-width: 1024px) 66vw, 100vw" : "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"}
                     className="object-cover transition duration-1000 ease-out group-hover:scale-105"
                   />
-                  <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/5" />
+                  <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink from-30% via-ink/80 via-55% to-ink/0" />
                   <div className="relative p-6 sm:p-8">
                     <div className="flex flex-wrap items-center justify-between gap-3">
-                      <span className="font-display text-[0.6rem] tracking-[0.2em] text-gold-light">
+                      <span className="font-display text-[0.72rem] tracking-[0.2em] text-gold-light">
                         {CATEGORY_LABEL[story.category]}
                       </span>
                       <StoryProgress photoIds={photos.map((photo) => photo.id)} />

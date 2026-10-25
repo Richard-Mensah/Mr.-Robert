@@ -67,7 +67,7 @@ export default function ContactForm({ defaultKind = "general" }: Props) {
 
         <div ref={(node) => { stepRefs.current[2] = node }} hidden={step !== 2} className="animate-toast space-y-8">
           <div className="border border-ink/10 bg-paper p-5 text-sm">
-            <p className="font-display text-[0.6rem] tracking-[0.2em] text-gold-deep">Review</p>
+            <p className="font-display text-[0.72rem] tracking-[0.2em] text-gold-deep">Review</p>
             <p className="mt-2 text-ink">
               <span className="font-medium">{pathway?.title}</span> enquiry from {summary.name || "you"}
               {summary.organisation && ` (${summary.organisation})`}. Reply to {summary.email || "your email"}.

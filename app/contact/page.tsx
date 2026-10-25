@@ -24,7 +24,7 @@ export default async function ContactPage({ searchParams }: Props) {
   return (
     <>
       <PageHero
-        eyebrow="Contact"
+        eyebrow="Correspondence"
         title={
           <>
             Let&apos;s build something <em className="text-gold-shimmer">meaningful.</em>

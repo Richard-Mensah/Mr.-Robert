@@ -66,7 +66,7 @@ export default function Lightbox({ photos, index, onNavigate, onClose }: Props) 
       {photo && index !== null && (
         <div className="flex h-full flex-col">
           <div className="flex items-center justify-between gap-4 px-5 py-4 sm:px-8">
-            <p className="font-display text-[0.65rem] tracking-[0.2em] text-gold-light">
+            <p className="font-display text-[0.76rem] tracking-[0.2em] text-gold-light">
               {index + 1} / {photos.length}
             </p>
             <button
@@ -100,7 +100,7 @@ export default function Lightbox({ photos, index, onNavigate, onClose }: Props) 
           </div>
 
           <div className="px-5 py-5 sm:px-8">
-            {story && <p className="font-display text-[0.65rem] tracking-[0.2em] text-gold-light">{story.title}</p>}
+            {story && <p className="font-display text-[0.76rem] tracking-[0.2em] text-gold-light">{story.title}</p>}
             <p className="mt-2 max-w-3xl text-sm leading-relaxed text-ivory/85 sm:text-base">{photo.alt}</p>
             {photo.credit && <p className="mt-1 text-xs text-ivory/50">Photo: {photo.credit}</p>}
           </div>

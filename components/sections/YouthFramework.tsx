@@ -13,8 +13,8 @@ export default function YouthFramework() {
   return (
     <section
       aria-labelledby="framework-title"
-      data-checkpoint="Quest Map"
-      className="starfield aurora relative overflow-hidden bg-night py-24 text-ivory lg:py-36"
+      data-checkpoint="Framework"
+      className="grid-chancery aurora relative overflow-hidden bg-night py-24 text-ivory lg:py-36"
     >
       <Container size="wide" className="relative">
         <SectionHeader
@@ -66,7 +66,7 @@ export default function YouthFramework() {
                 <span className="quest-node absolute -left-6 top-0 flex size-12 items-center justify-center rounded-full border border-gold-light/40 bg-night font-display text-sm text-gold-light lg:static">
                   {index + 1}
                 </span>
-                <p className="mt-0 font-display text-[0.65rem] tracking-[0.22em] text-gold-light lg:mt-6">
+                <p className="mt-0 font-display text-[0.76rem] tracking-[0.22em] text-gold-light lg:mt-6">
                   Level {stage.step}
                 </p>
                 <h3 className="mt-2 font-serif text-3xl tracking-tight lg:text-[1.75rem] xl:text-3xl">{stage.title}</h3>

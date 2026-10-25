@@ -26,30 +26,34 @@ export default function DelegatePass({ name, role }: Props) {
         onPointerLeave={onPointerLeave}
         role="img"
         aria-label={`Delegate pass preview for ${name || "your name"}, ${role}`}
-        className="relative aspect-[3/4.4] overflow-hidden border border-gold-light/40 bg-night text-ivory shadow-[0_50px_100px_-30px_rgba(0,0,0,0.75)] transition-transform duration-300 ease-out"
+        className="guilloche relative aspect-[3/4.4] overflow-hidden rounded-md border border-gold-light/40 bg-night text-ivory shadow-[0_50px_100px_-30px_rgba(0,0,0,0.75)] transition-transform duration-300 ease-out"
       >
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 opacity-60 mix-blend-screen"
           style={{
             background:
-              "radial-gradient(420px circle at var(--glow-x, 30%) var(--glow-y, 20%), rgba(246,226,168,0.35), transparent 45%), linear-gradient(115deg, transparent 30%, rgba(143,184,162,0.18) 45%, rgba(230,199,126,0.22) 55%, transparent 70%)",
+              "radial-gradient(420px circle at var(--glow-x, 30%) var(--glow-y, 20%), rgba(246,226,168,0.35), transparent 45%), linear-gradient(115deg, transparent 30%, rgba(143,184,162,0.2) 45%, rgba(230,199,126,0.22) 55%, transparent 70%)",
           }}
         />
-        <div aria-hidden="true" className="absolute inset-x-0 top-0 h-2 bg-gold-light" />
+        <div aria-hidden="true" className="absolute inset-x-0 top-0 flex h-1.5">
+          <span className="flex-1 bg-[#ce1126]" />
+          <span className="flex-1 bg-[#fcd116]" />
+          <span className="flex-1 bg-heritage" />
+        </div>
         <div className="relative flex h-full flex-col p-7">
           <div className="flex items-center justify-between">
             <Image src="/brand/monogram.png" alt="" width={44} height={44} className="ring-1 ring-gold-light/40" />
-            <span className="border border-gold-light/40 px-2.5 py-1 font-display text-[0.55rem] tracking-[0.22em] text-gold-light">
-              DELEGATE
+            <span className="border border-gold-light/40 px-2.5 py-1 font-display text-[0.68rem] tracking-[0.22em] text-gold-light">
+              DELEGATE CREDENTIAL
             </span>
           </div>
 
-          <p className="mt-8 font-display text-[0.6rem] tracking-[0.24em] text-gold-light">Tamale Youth Summit</p>
+          <p className="mt-8 font-display text-[0.72rem] tracking-[0.24em] text-gold-light">Tamale Youth Summit</p>
           <p className="mt-1 font-serif text-lg italic text-ivory/70">Inspiring · Equipping · Connecting</p>
 
           <div className="mt-auto">
-            <div className="flex size-16 items-center justify-center rounded-full bg-gold-light font-display text-xl text-ink">
+            <div className="seal-emboss flex size-16 items-center justify-center rounded-full bg-[radial-gradient(circle_at_35%_30%,var(--color-gold-light),var(--color-gold)_60%,var(--color-gold-deep))] font-display text-xl text-ink">
               {initials || "YOU"}
             </div>
             <p className="mt-5 break-words font-serif text-3xl leading-tight">{name.trim() || "Your name"}</p>

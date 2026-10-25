@@ -64,11 +64,14 @@ export type Story = {
   figures?: { value: string; label: string }[]
 }
 
+export type CredentialCategory = "mandate" | "record" | "engagement"
+
 export type Milestone = {
   id: string
   path: string
   title: string
   description: string
+  category: CredentialCategory
 }
 
 export type SocialLink = {

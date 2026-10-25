@@ -6,6 +6,7 @@ import Container from "@/components/ui/Container"
 import SectionHeader from "@/components/ui/SectionHeader"
 import { LEADERSHIP_AREAS } from "@/data/pillars"
 import { GOVERNANCE_COMMITMENTS } from "@/data/profile"
+import { SDG_ALIGNMENT } from "@/data/dossier"
 import { cn } from "@/lib/utils"
 
 const ICONS: LucideIcon[] = [Users, Rocket, Cpu, GraduationCap, Bird, Sprout]
@@ -76,7 +77,7 @@ export default function FocusExplorer() {
             id="focus-panel"
             role="tabpanel"
             aria-labelledby={`focus-tab-${selected}`}
-            className="starfield aurora relative animate-toast overflow-hidden bg-night p-8 text-ivory sm:p-12 lg:col-span-8"
+            className="guilloche relative animate-toast overflow-hidden bg-night p-8 text-ivory sm:p-12 lg:col-span-8"
           >
             <div className="flex items-start justify-between gap-6">
               <span className="flex size-20 items-center justify-center rounded-full bg-gold-light text-ink shadow-[0_0_50px_rgba(230,199,126,0.45)]">
@@ -88,6 +89,16 @@ export default function FocusExplorer() {
             </div>
             <h3 className="mt-10 font-serif text-4xl tracking-tight sm:text-5xl">{area.title}</h3>
             <p className="mt-4 max-w-xl text-xl leading-relaxed text-ivory/75">{area.description}</p>
+            <p id="sdg-label" className="mt-6 font-display text-xs tracking-[0.18em] text-ivory/50">
+              Editorial alignment with the Sustainable Development Goals
+            </p>
+            <ul aria-labelledby="sdg-label" className="mt-2 flex flex-wrap gap-2">
+              {(SDG_ALIGNMENT[area.title] ?? []).map((sdg) => (
+                <li key={sdg.goal} className="rounded-full border border-cerulean-light/30 bg-cerulean/10 px-3 py-1 text-xs text-cerulean-light">
+                  <span className="font-semibold">SDG {sdg.goal}</span> · {sdg.name}
+                </li>
+              ))}
+            </ul>
             <div className="gold-line my-10" />
             <p className="font-display text-xs tracking-eyebrow text-gold-light">How the role advances it</p>
             <ul className="mt-5 grid gap-3 sm:grid-cols-2">

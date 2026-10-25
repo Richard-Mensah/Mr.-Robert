@@ -3,6 +3,16 @@ import type { VisitorPath } from "@/types"
 /** Tailored next steps for each kind of visitor. Every action points to a real feature. */
 export const VISITOR_PATHS: VisitorPath[] = [
   {
+    id: "committee",
+    label: "Scholarship or programme committee",
+    headline: "Review his mandate, record and publications in one briefing.",
+    actions: [
+      { title: "Open the Briefing Dossier", description: "A printable two-page candidate summary.", href: "/dossier" },
+      { title: "Verify the public mandate", description: "Regional Director, National Youth Authority.", href: "/leadership" },
+      { title: "Examine the field record", description: "Summits, programmes and engagements in photographs.", href: "/gallery" },
+    ],
+  },
+  {
     id: "young-person",
     label: "I'm a young person",
     headline: "Find out where you are on the climb, and what to do next.",

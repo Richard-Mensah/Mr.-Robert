@@ -51,7 +51,7 @@ export default function LeadershipCompass() {
   const progress = result ? 100 : (step / total) * 100
 
   return (
-    <section id="compass" aria-labelledby="compass-title" data-checkpoint="Compass" className="starfield aurora relative scroll-mt-20 overflow-hidden bg-night py-24 text-ivory lg:py-36">
+    <section id="compass" aria-labelledby="compass-title" data-checkpoint="Compass" className="grid-chancery aurora relative scroll-mt-20 overflow-hidden bg-night py-24 text-ivory lg:py-36">
       <Container size="wide" className="relative grid gap-14 lg:grid-cols-12 lg:items-center">
         <div className="lg:col-span-5">
           <Eyebrow tone="light">Interactive · 1 minute</Eyebrow>

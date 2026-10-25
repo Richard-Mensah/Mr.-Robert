@@ -35,7 +35,7 @@ export default function BookShowcase() {
           ))}
         </ul>
 
-        <div data-reveal className="starfield aurora relative mt-24 grid gap-8 overflow-hidden bg-night p-8 text-ivory sm:p-12 lg:grid-cols-2 lg:items-center">
+        <div data-reveal className="grid-chancery aurora relative mt-24 grid gap-8 overflow-hidden bg-night p-8 text-ivory sm:p-12 lg:grid-cols-2 lg:items-center">
           <div className="relative">
             <p className="font-display text-xs tracking-eyebrow text-gold-light">Be first to know</p>
             <p className="mt-4 font-serif text-3xl leading-tight sm:text-4xl">

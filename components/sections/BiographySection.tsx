@@ -24,7 +24,7 @@ export default function BiographySection() {
             <dl data-reveal className="mt-10 divide-y divide-ink/10 border-y border-ink/10">
               {FACTS.map((fact) => (
                 <div key={fact.label} className="grid gap-1 py-4">
-                  <dt className="text-xs font-semibold uppercase tracking-eyebrow text-muted">{fact.label}</dt>
+                  <dt className="font-display text-sm tracking-eyebrow text-muted">{fact.label}</dt>
                   <dd className="font-serif text-lg leading-snug text-ink">{fact.value}</dd>
                 </div>
               ))}
@@ -51,7 +51,7 @@ export default function BiographySection() {
           </div>
 
           <div data-reveal className="mt-20 border-t-2 border-forest pt-10">
-            <p className="text-xs font-semibold uppercase tracking-eyebrow text-forest">His broader vision</p>
+            <p className="font-display text-sm tracking-eyebrow text-forest">His broader vision</p>
             <p className="mt-6 font-serif text-3xl leading-snug tracking-tight text-ink text-balance sm:text-4xl">
               {PROFILE.vision}
             </p>

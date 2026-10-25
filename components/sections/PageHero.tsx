@@ -1,6 +1,7 @@
 import type { ReactNode } from "react"
 import Container from "@/components/ui/Container"
 import Eyebrow from "@/components/ui/Eyebrow"
+import PageCredential from "@/components/features/journey/PageCredential"
 import { cn } from "@/lib/utils"
 
 type Props = {
@@ -9,25 +10,22 @@ type Props = {
   intro?: ReactNode
   aside?: ReactNode
   checkpoint?: string
+  /** Short section name for the briefing bar; defaults to the eyebrow. */
+  label?: string
 }
 
-/** Night-sky opening for inner pages. Holds the page's single h1. */
-export default function PageHero({ eyebrow, title, intro, aside, checkpoint = "Base Camp" }: Props) {
+/** Chancery-ruled opening for inner pages. Holds the page's single h1. */
+export default function PageHero({ eyebrow, title, intro, aside, checkpoint = "Overview", label = eyebrow }: Props) {
   return (
     <section
       data-checkpoint={checkpoint}
-      className="starfield aurora relative overflow-hidden bg-night pb-20 pt-36 text-ivory lg:pb-28 lg:pt-48"
+      className="grid-chancery relative overflow-hidden bg-night pb-16 pt-36 text-ivory lg:pb-20 lg:pt-48"
     >
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 1440 120"
-        preserveAspectRatio="none"
-        className="absolute inset-x-0 bottom-0 h-16 w-full text-ink/40 lg:h-24"
-      >
-        <path d="M0 120 L220 52 L380 92 L620 18 L860 86 L1060 40 L1260 90 L1440 60 L1440 120 Z" fill="currentColor" />
-      </svg>
+      <div aria-hidden="true" className="pointer-events-none absolute -right-48 -top-24 size-[44rem] rounded-full bg-[radial-gradient(circle,rgb(47_179_122/0.26),transparent_65%)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute -bottom-40 left-1/4 size-[30rem] rounded-full bg-[radial-gradient(circle,rgb(184_145_63/0.12),transparent_65%)]" />
+
       <Container size="wide" className="relative grid gap-12 lg:grid-cols-12 lg:items-end">
-        <div className={cn(aside ? "lg:col-span-8" : "lg:col-span-10")}>
+        <div className={cn("min-w-0", aside ? "lg:col-span-8" : "lg:col-span-10")}>
           <div className="animate-rise">
             <Eyebrow tone="light">{eyebrow}</Eyebrow>
           </div>
@@ -41,6 +39,22 @@ export default function PageHero({ eyebrow, title, intro, aside, checkpoint = "B
           )}
         </div>
         {aside && <div className="animate-rise [animation-delay:320ms] lg:col-span-4">{aside}</div>}
+      </Container>
+
+      <Container size="wide" className="relative mt-14 lg:mt-20">
+        <div className="flex flex-col gap-6 border-t border-ivory/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-4">
+            <span aria-hidden="true" className="flex h-6 w-1 flex-col overflow-hidden rounded-full">
+              <span className="flex-1 bg-[#ce1126]" />
+              <span className="flex-1 bg-[#fcd116]" />
+              <span className="flex-1 bg-heritage" />
+            </span>
+            <p className="font-display text-sm tracking-[0.2em] text-ivory/55">Briefing · {label}</p>
+          </div>
+          <div className="animate-rise [animation-delay:400ms]">
+            <PageCredential />
+          </div>
+        </div>
       </Container>
     </section>
   )

@@ -10,7 +10,7 @@ type Props = {
 
 export default function ErrorPage({ reset }: Props) {
   return (
-    <section className="starfield aurora relative flex min-h-[80svh] items-center overflow-hidden bg-night pb-24 pt-40 text-ivory">
+    <section className="grid-chancery aurora relative flex min-h-[80svh] items-center overflow-hidden bg-night pb-24 pt-40 text-ivory">
       <Container>
         <Eyebrow tone="light">Something went wrong</Eyebrow>
         <h1 className="mt-8 font-serif text-5xl leading-tight tracking-tight text-ivory sm:text-6xl">

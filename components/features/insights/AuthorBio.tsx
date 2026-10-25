@@ -5,7 +5,7 @@ import { ROLE_LINE } from "@/constants"
 export default function AuthorBio() {
   return (
     <aside aria-label="About the author" className="border-t border-ink/15 pt-10">
-      <p className="text-xs font-semibold uppercase tracking-eyebrow text-muted">Written by</p>
+      <p className="font-display text-sm tracking-eyebrow text-muted">Written by</p>
       <p className="mt-4 font-serif text-3xl tracking-tight text-ink">{PROFILE.name}</p>
       <p className="mt-2 text-sm text-muted">{ROLE_LINE}</p>
       <p className="mt-6 max-w-2xl leading-relaxed text-muted">

@@ -15,7 +15,7 @@ export default function LeadershipPillars({ title = "Leadership that creates opp
     <section
       aria-labelledby="leadership-areas"
       data-checkpoint="Leadership"
-      className="starfield aurora relative overflow-hidden bg-night py-24 text-ivory lg:py-36"
+      className="grid-chancery aurora relative overflow-hidden bg-night py-24 text-ivory lg:py-36"
     >
       <Container size="wide" className="relative">
         <SectionHeader

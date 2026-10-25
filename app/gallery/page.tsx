@@ -40,7 +40,7 @@ export default async function GalleryPage({ searchParams }: Props) {
   return (
     <>
       <PageHero
-        eyebrow="Gallery"
+        eyebrow="Field Record"
         title={
           <>
             The work, <em className="text-gold-shimmer">in the field.</em>
@@ -48,15 +48,15 @@ export default async function GalleryPage({ searchParams }: Props) {
         }
         intro={
           <p>
-            Real moments from summits, classrooms, communities and ceremonies. Every photo you open is collected on your
-            journey.
+            Real moments from summits, classrooms, communities and ceremonies. Every photo you open is logged in your
+            briefing.
           </p>
         }
       />
 
       <ImpactStories />
 
-      <section id="moments" aria-labelledby="moments-title" data-checkpoint="Moments" className="scroll-mt-20 bg-paper py-24 lg:py-32">
+      <section id="moments" aria-labelledby="moments-title" data-checkpoint="Field Record" className="scroll-mt-20 bg-paper py-24 lg:py-32">
         <Container size="wide">
           <SectionHeader id="moments-title" eyebrow={`${PHOTOS.length} photographs`} title="Moments." className="mb-12" />
           <GalleryFilters activeCategory={activeCategory} activeStory={activeStory} />
@@ -64,7 +64,7 @@ export default async function GalleryPage({ searchParams }: Props) {
         </Container>
       </section>
 
-      <section id="quiz" aria-labelledby="quiz-title" data-checkpoint="Game" className="scroll-mt-20 bg-paper pb-24 lg:pb-32">
+      <section id="quiz" aria-labelledby="quiz-title" data-checkpoint="Field Recall" className="scroll-mt-20 bg-paper pb-24 lg:pb-32">
         <Container size="wide">
           <MomentQuiz />
         </Container>

@@ -16,7 +16,7 @@ export default function InquiryList({ inquiries }: Props) {
         <li key={inquiry.id}>
           <details className="group p-5 open:bg-ivory">
             <summary className="flex cursor-pointer list-none flex-wrap items-center gap-x-4 gap-y-1">
-              <span className="bg-night px-2 py-0.5 font-display text-[0.6rem] tracking-[0.18em] text-gold-light">
+              <span className="bg-night px-2 py-0.5 font-display text-[0.72rem] tracking-[0.18em] text-gold-light">
                 {inquiry.kind}
               </span>
               <span className="font-serif text-lg text-ink">{inquiry.name}</span>

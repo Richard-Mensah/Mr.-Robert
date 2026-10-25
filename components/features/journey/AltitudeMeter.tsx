@@ -51,15 +51,15 @@ export default function AltitudeMeter() {
 
   return (
     <>
-      <div aria-hidden="true" className="fixed inset-x-0 top-0 z-50 h-0.5 xl:hidden print:hidden">
+      <div aria-hidden="true" className="fixed inset-x-0 top-0 z-50 h-0.5 min-[1600px]:hidden print:hidden">
         <div className="h-full origin-left bg-gold-light" style={{ transform: `scaleX(${progress})` }} />
       </div>
 
       <aside
-        aria-label="Altitude: your progress through the page"
-        className="pointer-events-none fixed right-6 top-1/2 z-30 hidden h-[56vh] -translate-y-1/2 flex-col items-center xl:flex print:hidden"
+        aria-label="Briefing progress through this page"
+        className="pointer-events-none fixed right-4 top-1/2 z-30 hidden h-[56vh] -translate-y-1/2 flex-col items-center min-[1600px]:flex print:hidden"
       >
-        <span className="font-display text-[0.55rem] tracking-[0.2em] bg-ink/75 px-1.5 py-0.5 text-gold-light">SUMMIT</span>
+        <span className="font-display text-[0.68rem] tracking-[0.2em] bg-ink/75 px-1.5 py-0.5 text-gold-light">CLOSE</span>
         <div className="relative my-3 w-px flex-1 bg-gold/25">
           <div
             className="absolute inset-x-0 bottom-0 bg-gold-light shadow-[0_0_10px_rgba(230,199,126,0.8)]"
@@ -79,7 +79,7 @@ export default function AltitudeMeter() {
             style={{ bottom: `${percent}%` }}
           />
         </div>
-        <span className="font-display text-[0.55rem] tracking-[0.2em] bg-ink/75 px-1.5 py-0.5 text-gold-light">BASE</span>
+        <span className="font-display text-[0.68rem] tracking-[0.2em] bg-ink/75 px-1.5 py-0.5 text-gold-light">OPENING</span>
         <p className="sr-only" aria-live="polite">
           {current ? `Now at ${current.label}` : ""}
         </p>

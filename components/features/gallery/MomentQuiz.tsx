@@ -1,18 +1,14 @@
 "use client"
 
-import Image from "next/image"
 import { useState } from "react"
-import { Check, Flame, RotateCcw, X } from "lucide-react"
+import { Flame, RotateCcw } from "lucide-react"
+import QuizRound, { type Round } from "@/components/features/gallery/QuizRound"
 import { IMPACT_STORIES, PHOTOS } from "@/data/gallery"
 import { useJourney } from "@/hooks/useJourney"
-import { cn } from "@/lib/utils"
-import type { Photo, Story } from "@/types"
 
 const ROUNDS = 5
 const OPTIONS = 3
 const PASS_MARK = 4
-
-type Round = { photo: Photo; options: Story[] }
 
 function shuffle<T>(items: T[]): T[] {
   const copy = [...items]
@@ -33,7 +29,7 @@ function buildRounds(): Round[] {
   })
 }
 
-/** "Which moment?": name the story behind each photo. Scoring 4 of 5 unlocks Storykeeper. */
+/** "Which moment?": name the story behind each photo. Scoring 4 of 5 unlocks the Field Recall credential. */
 export default function MomentQuiz() {
   const { unlockMilestone } = useJourney()
   const [rounds, setRounds] = useState<Round[] | null>(null)
@@ -77,31 +73,31 @@ export default function MomentQuiz() {
   }
 
   return (
-    <div className="starfield aurora relative overflow-hidden bg-night p-6 text-ivory sm:p-10 lg:p-14">
+    <div className="grid-chancery aurora relative overflow-hidden bg-night p-6 text-ivory sm:p-10 lg:p-14">
       <div className="relative grid gap-10 lg:grid-cols-12 lg:items-center">
         <div className="lg:col-span-4">
-          <p className="font-display text-xs tracking-eyebrow text-gold-light">Mini game</p>
+          <p className="font-display text-xs tracking-eyebrow text-gold-light">Field Recall · a short exercise</p>
           <h2 id="quiz-title" className="mt-4 font-serif text-4xl leading-tight sm:text-5xl">
             Which moment?
           </h2>
           <p className="mt-5 leading-relaxed text-ivory/75">
             Five real photographs. Name the story behind each one. Score {PASS_MARK} or more to earn the
-            Storykeeper milestone.
+            Field Recall credential.
           </p>
           {rounds && !finished && (
             <dl className="mt-8 flex gap-8" aria-live="polite">
               <div>
-                <dt className="font-display text-[0.6rem] tracking-[0.2em] text-ivory/60">Round</dt>
+                <dt className="font-display text-[0.72rem] tracking-[0.2em] text-ivory/60">Round</dt>
                 <dd className="mt-1 font-serif text-3xl">
                   {current + 1}<span className="text-ivory/40">/{rounds.length}</span>
                 </dd>
               </div>
               <div>
-                <dt className="font-display text-[0.6rem] tracking-[0.2em] text-ivory/60">Score</dt>
+                <dt className="font-display text-[0.72rem] tracking-[0.2em] text-ivory/60">Score</dt>
                 <dd className="mt-1 font-serif text-3xl text-gold-light">{score}</dd>
               </div>
               <div>
-                <dt className="font-display text-[0.6rem] tracking-[0.2em] text-ivory/60">Streak</dt>
+                <dt className="font-display text-[0.72rem] tracking-[0.2em] text-ivory/60">Streak</dt>
                 <dd className="mt-1 flex items-center gap-1 font-serif text-3xl">
                   {streak}
                   {streak >= 2 && <Flame aria-hidden="true" className="size-6 text-gold-light" />}
@@ -120,68 +116,20 @@ export default function MomentQuiz() {
                 onClick={start}
                 className="btn-sweep inline-flex min-h-12 items-center bg-gold-light px-7 text-sm font-medium text-ink hover:bg-ivory"
               >
-                Start the game
+                Begin Field Recall
               </button>
             </div>
           )}
 
-          {round && (
-            <div className="grid gap-6 sm:grid-cols-2 sm:items-center">
-              <div className="relative aspect-[4/3] overflow-hidden border border-gold-light/25">
-                <Image
-                  key={round.photo.id}
-                  src={round.photo.src}
-                  alt={`Round ${current + 1} photograph`}
-                  fill
-                  sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
-                  className="animate-rise object-cover"
-                />
-              </div>
-              <div>
-                <p className="text-sm text-ivory/70">Which story is this?</p>
-                <ul className="mt-4 grid gap-3">
-                  {round.options.map((option) => {
-                    const correct = option.slug === round.photo.story
-                    const chosen = picked === option.slug
-                    return (
-                      <li key={option.slug}>
-                        <button
-                          type="button"
-                          onClick={() => choose(option.slug)}
-                          disabled={picked !== null}
-                          className={cn(
-                            "flex min-h-12 w-full items-center justify-between gap-3 border px-4 py-3 text-left text-sm transition-colors",
-                            !picked && "border-ivory/20 hover:border-gold-light hover:text-gold-light",
-                            picked && correct && "border-gold-light bg-gold-light text-ink",
-                            picked && chosen && !correct && "border-red-300/60 bg-red-900/40 text-ivory",
-                            picked && !chosen && !correct && "border-ivory/10 text-ivory/40",
-                          )}
-                        >
-                          {option.title}
-                          {picked && correct && <Check aria-hidden="true" className="size-4 shrink-0" />}
-                          {picked && chosen && !correct && <X aria-hidden="true" className="size-4 shrink-0" />}
-                        </button>
-                      </li>
-                    )
-                  })}
-                </ul>
-                {picked && (
-                  <div className="mt-5" aria-live="polite">
-                    <p className="text-sm text-ivory/80">
-                      {picked === round.photo.story ? "Correct. " : "Not quite. "}
-                      {round.photo.alt}.
-                    </p>
-                    <button
-                      type="button"
-                      onClick={next}
-                      className="mt-4 inline-flex min-h-11 items-center border border-gold-light/60 px-5 text-sm text-gold-light hover:bg-gold-light hover:text-ink"
-                    >
-                      {current + 1 >= (rounds?.length ?? 0) ? "See my score" : "Next photo"}
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
+          {round && rounds && (
+            <QuizRound
+              round={round}
+              position={current + 1}
+              total={rounds.length}
+              picked={picked}
+              onChoose={choose}
+              onNext={next}
+            />
           )}
 
           {finished && (
@@ -193,7 +141,7 @@ export default function MomentQuiz() {
               </p>
               <p className="text-ivory/75">
                 {score >= PASS_MARK
-                  ? "Storykeeper unlocked. You know the climb. See you at the top."
+                  ? "Field Recall credential verified. You know the record."
                   : `Best streak ${best}. Explore the stories above, then try again.`}
               </p>
               <button

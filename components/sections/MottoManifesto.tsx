@@ -9,7 +9,7 @@ export default function MottoManifesto() {
     <section
       aria-labelledby="motto-title"
       data-checkpoint="Motto"
-      className="starfield aurora relative overflow-hidden bg-ink py-28 text-ivory lg:py-44"
+      className="grid-chancery aurora relative overflow-hidden bg-ink py-28 text-ivory lg:py-44"
     >
       <Container size="wide" className="relative text-center">
         <div className="flex justify-center">

@@ -3,10 +3,11 @@ import type { Command } from "@/types"
 export const COMMANDS: Command[] = [
   { group: "Actions", label: "Invite Robert to speak", href: "/speaker#invite", keywords: "booking event keynote" },
   { group: "Actions", label: "Plan an event with Robert", href: "/speaker#planner", keywords: "planner organiser brief" },
+  { group: "Actions", label: "Open the Briefing Dossier", href: "/dossier", keywords: "scholarship committee cv print pdf candidate" },
   { group: "Actions", label: "Open the speaker one-sheet", href: "/speaker/one-sheet", keywords: "print pdf media kit" },
   { group: "Actions", label: "Take the Leadership Compass", href: "/youth-development#compass", keywords: "quiz assessment level" },
   { group: "Actions", label: "Get your Summit delegate pass", href: "/tamale-youth-summit#pass", keywords: "register interest tamale" },
-  { group: "Actions", label: "Play Which Moment?", href: "/gallery#quiz", keywords: "game quiz photos" },
+  { group: "Actions", label: "Try Field Recall", href: "/gallery#quiz", keywords: "game quiz photos which moment" },
   { group: "Actions", label: "Partner on youth development", href: "/contact?type=partnership#enquiry", keywords: "organisation collaborate" },
   { group: "Actions", label: "Media and interview request", href: "/contact?type=media#enquiry", keywords: "press journalist" },
   { group: "Pages", label: "Home", href: "/" },

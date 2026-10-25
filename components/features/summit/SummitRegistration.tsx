@@ -22,7 +22,7 @@ export default function SummitRegistration() {
   const { status, feedback, errors, handleSubmit } = useApiForm("/api/subscribe")
 
   return (
-    <section id="pass" aria-labelledby="pass-title" data-checkpoint="Your Pass" className="starfield aurora relative scroll-mt-20 overflow-hidden bg-night py-24 text-ivory lg:py-36">
+    <section id="pass" aria-labelledby="pass-title" data-checkpoint="Credential" className="grid-chancery aurora relative scroll-mt-20 overflow-hidden bg-night py-24 text-ivory lg:py-36">
       <Container size="wide" className="relative grid gap-16 lg:grid-cols-2 lg:items-center">
         <div className="lg:order-2">
           <DelegatePass name={name} role={role} />

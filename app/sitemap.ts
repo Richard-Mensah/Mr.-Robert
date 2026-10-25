@@ -12,6 +12,7 @@ const STATIC_ROUTES = [
   "/author",
   "/speaker",
   "/speaker/one-sheet",
+  "/dossier",
   "/tamale-youth-summit",
   "/gallery",
   "/insights",

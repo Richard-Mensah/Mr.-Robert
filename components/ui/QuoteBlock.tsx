@@ -35,7 +35,7 @@ export default function QuoteBlock({ quote, attribution, tone = "dark", size = "
       {attribution && (
         <figcaption
           className={cn(
-            "mt-8 text-xs font-semibold uppercase tracking-eyebrow",
+            "mt-8 font-display text-sm tracking-eyebrow",
             tone === "dark" ? "text-muted" : "text-ivory/60",
           )}
         >

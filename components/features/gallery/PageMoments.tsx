@@ -47,8 +47,8 @@ export default function PageMoments({ page, tone = "paper" }: Props) {
   return (
     <section
       aria-labelledby={`moments-${page}`}
-      data-checkpoint="Moments"
-      className={cn("relative overflow-hidden py-24 lg:py-32", dark ? "starfield aurora bg-night text-ivory" : tone === "ivory" ? "bg-ivory" : "bg-paper")}
+      data-checkpoint="Field Record"
+      className={cn("relative overflow-hidden py-24 lg:py-32", dark ? "grid-chancery aurora bg-night text-ivory" : tone === "ivory" ? "bg-ivory" : "bg-paper")}
     >
       <Container size="wide" className="relative">
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
@@ -85,12 +85,12 @@ export default function PageMoments({ page, tone = "paper" }: Props) {
                 ))}
               </ul>
               {complete ? (
-                <span className="flex animate-toast items-center gap-2 font-display text-[0.65rem] tracking-[0.18em] text-gold-deep">
+                <span className="flex animate-toast items-center gap-2 font-display text-[0.76rem] tracking-[0.18em] text-gold-deep">
                   <Sparkles aria-hidden="true" className={cn("size-4", dark && "text-gold-light")} />
                   <span className={cn(dark && "text-gold-light")}>All moments collected</span>
                 </span>
               ) : (
-                <span className={cn("font-display text-[0.65rem] tracking-[0.18em]", dark ? "text-ivory/75" : "text-muted")}>
+                <span className={cn("font-display text-[0.76rem] tracking-[0.18em]", dark ? "text-ivory/75" : "text-muted")}>
                   Open to collect · {found}/{photos.length}
                 </span>
               )}
@@ -127,14 +127,14 @@ export default function PageMoments({ page, tone = "paper" }: Props) {
                     />
                     <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent" />
                     <span className="absolute inset-x-4 bottom-4 text-ivory">
-                      <span className="block font-display text-[0.6rem] tracking-[0.2em] text-gold-light">
+                      <span className="block font-display text-[0.72rem] tracking-[0.2em] text-gold-light">
                         {getStory(photo.story)?.title}
                       </span>
                       <span className="mt-1 line-clamp-2 block text-sm leading-snug text-ivory/90">{photo.alt}</span>
                     </span>
                     <span
                       className={cn(
-                        "absolute right-3 top-3 flex items-center gap-1.5 px-2.5 py-1 font-display text-[0.55rem] tracking-[0.18em] transition-all duration-500",
+                        "absolute right-3 top-3 flex items-center gap-1.5 px-2.5 py-1 font-display text-[0.68rem] tracking-[0.18em] transition-all duration-500",
                         isCollected
                           ? "bg-gold-light text-ink shadow-[0_0_18px_rgba(230,199,126,0.7)]"
                           : "bg-ink/60 text-ivory/85 backdrop-blur-sm group-hover/photo:bg-gold-light group-hover/photo:text-ink",
