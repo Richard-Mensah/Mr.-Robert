@@ -2,12 +2,14 @@ import ImagePanel from "@/components/ui/ImagePanel"
 import { BOOKS } from "@/data/books"
 import { IMPACT_STORIES } from "@/data/gallery"
 import { IMAGES } from "@/data/images"
-import { VERIFIED_IMPACT } from "@/data/impact"
+import { SPEAKING_REACH } from "@/data/impact"
 import { PROFILE } from "@/data/profile"
 
 /** Every figure is counted from the site's own records; the youth figure appears only once verified. */
 const FIGURES = [
-  ...(VERIFIED_IMPACT.youthReached ? [{ value: VERIFIED_IMPACT.youthReached.toLocaleString("en-GB"), label: "Young people reached" }] : []),
+  ...(SPEAKING_REACH
+    ? [{ value: `${SPEAKING_REACH.value.toLocaleString("en-GB")}${SPEAKING_REACH.suffix}`, label: `${SPEAKING_REACH.label}, ${SPEAKING_REACH.scope.charAt(0).toLowerCase()}${SPEAKING_REACH.scope.slice(1)}` }]
+    : []),
   { value: String(IMPACT_STORIES.length), label: "Field engagements on record" },
   { value: String(BOOKS.length), label: "Published books" },
 ]

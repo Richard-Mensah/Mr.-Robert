@@ -4,15 +4,17 @@ import { useEffect, useRef, useState } from "react"
 
 type Props = {
   value: number
+  /** Appended after the number, e.g. "+". */
+  suffix?: string
   durationMs?: number
   className?: string
 }
 
 /**
- * Counts up to a real figure once it scrolls into view. Only use it for counts the site can
- * verify from its own data (photographs, stories, books), never for invented statistics.
+ * Counts up to a real figure once it scrolls into view. Only use it for counts taken from the site's
+ * own data or from a sourced figure in data/impact.ts, never for invented statistics.
  */
-export default function CountUp({ value, durationMs = 1400, className }: Props) {
+export default function CountUp({ value, suffix = "", durationMs = 1400, className }: Props) {
   const ref = useRef<HTMLSpanElement>(null)
   const [shown, setShown] = useState(value)
 
@@ -42,8 +44,14 @@ export default function CountUp({ value, durationMs = 1400, className }: Props) 
 
   return (
     <span ref={ref} className={className}>
-      <span aria-hidden="true">{shown}</span>
-      <span className="sr-only">{value}</span>
+      <span aria-hidden="true">
+        {shown.toLocaleString("en-GB")}
+        {suffix}
+      </span>
+      <span className="sr-only">
+        {value.toLocaleString("en-GB")}
+        {suffix}
+      </span>
     </span>
   )
 }

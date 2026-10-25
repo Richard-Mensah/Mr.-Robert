@@ -8,14 +8,15 @@ import StatusPill from "@/components/ui/StatusPill"
 import { IMAGES } from "@/data/images"
 import { BOOKS } from "@/data/books"
 import { IMPACT_STORIES } from "@/data/gallery"
-import { VERIFIED_IMPACT } from "@/data/impact"
+import { SPEAKING_REACH } from "@/data/impact"
 import { PROFILE } from "@/data/profile"
+import { cn } from "@/lib/utils"
 
 const HEADLINE = ["Empowering young", "people to lead,", "build and transform."]
 
 /** Every figure here is counted from the site's own data. */
 const FIGURES = [
-  ...(VERIFIED_IMPACT.youthReached ? [{ value: VERIFIED_IMPACT.youthReached, label: "Young people reached" }] : []),
+  ...(SPEAKING_REACH ? [{ value: SPEAKING_REACH.value, suffix: SPEAKING_REACH.suffix, label: "People reached through speaking" }] : []),
   { value: IMPACT_STORIES.length, label: "Field stories on record" },
   { value: BOOKS.length, label: "Published books" },
 ]
@@ -57,12 +58,27 @@ export default function Hero() {
             <ButtonLink href="/speaker#invite" label="Invite to Speak" variant="light" />
           </div>
 
-          <dl className="mt-14 grid max-w-xl animate-rise [grid-template-columns:repeat(auto-fit,minmax(0,1fr))] border-t border-ivory/10 pt-6 [animation-delay:480ms]">
-            {FIGURES.map((figure) => (
-              <div key={figure.label} className="flex flex-col border-l border-ivory/10 pl-4 first:border-l-0 first:pl-0">
+          <dl
+            className={cn(
+              "mt-14 grid max-w-2xl animate-rise gap-y-6 border-t border-ivory/10 pt-6 [animation-delay:480ms]",
+              SPEAKING_REACH ? "grid-cols-2 sm:grid-cols-[1.6fr_1fr_1fr]" : "grid-cols-2",
+            )}
+          >
+            {FIGURES.map((figure, index) => (
+              <div
+                key={figure.label}
+                className={cn(
+                  "flex flex-col border-ivory/10",
+                  SPEAKING_REACH && index === 0 ? "col-span-2 sm:col-span-1" : "",
+                  SPEAKING_REACH
+                    ? index > 1 && "border-l pl-4 sm:pl-5"
+                    : index > 0 && "border-l pl-4",
+                  SPEAKING_REACH && index === 1 && "sm:border-l sm:pl-5",
+                )}
+              >
                 <dt className="order-2 mt-1 text-xs leading-snug text-ivory/55">{figure.label}</dt>
                 <dd className="font-serif text-4xl tabular-nums text-gold-light sm:text-5xl">
-                  <CountUp value={figure.value} />
+                  <CountUp value={figure.value} suffix={"suffix" in figure ? figure.suffix : ""} />
                 </dd>
               </div>
             ))}

@@ -204,10 +204,10 @@ The focus-area table maps each area to the UN Sustainable Development Goals (`da
 is the site's own editorial framing, meant to help international readers place the work. It is footnoted on
 the page as such, and it must never be presented as a UN affiliation or endorsement.
 
-**Impact figures.** The figures on the dossier and the homepage are counted from the site's own data. A "young
-people reached" figure is ready to show in both places, animated on the homepage, but it stays hidden until
-it's set in `data/impact.ts` along with its source. Only fill it in from a document someone can point to,
-such as an NYA report or Summit registration records.
+**Impact figures.** The figures on the homepage and the dossier come from two places. Field stories and books
+are counted from the site's own data. The speaking reach, "20,000+ people reached through speaking engagements,
+across Northern Ghana and beyond", was supplied by Robert and lives in `data/impact.ts` with its source. Update
+it there; setting it to `null` hides it everywhere. Don't add another figure without a source someone can point to.
 
 ---
 
@@ -217,7 +217,7 @@ The motion is kept small and slow, so a reviewer reading closely isn't distracte
 
 - headlines that rise line by line from a mask
 - a seal that stamps when a credential is earned
-- figures that count up, used only on counts the site can verify (field stories, books)
+- figures that count up, used only for sourced numbers (speaking reach, field stories, books)
 - the slideshow's zoom
 
 Everything animates transform or opacity only.
